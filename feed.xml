@@ -6,16 +6,16 @@
 </description>
     <link>https://incidentnormal.github.io/</link>
     <atom:link href="https://incidentnormal.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 23 Sep 2016 00:33:38 +0100</pubDate>
-    <lastBuildDate>Fri, 23 Sep 2016 00:33:38 +0100</lastBuildDate>
+    <pubDate>Fri, 23 Sep 2016 00:36:13 +0100</pubDate>
+    <lastBuildDate>Fri, 23 Sep 2016 00:36:13 +0100</lastBuildDate>
     <generator>Jekyll v2.5.3</generator>
     
       <item>
         <title>Messin&#39; with the Syntax Highlighter</title>
         <description>&lt;p&gt;Due to a repeated warning email from github every time I deployed a change to the page; I decided to try and get to the bottom of it.&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;p&amp;gt;&lt;/span&gt;The email:&lt;span class=&quot;nt&quot;&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;blockquote&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;cite=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;support@github.com&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;p&gt;The email:&lt;/p&gt;
+&lt;blockquote cite=&quot;support@github.com&quot;&gt;
 The page build completed successfully, 
 but returned the following warning:
 
@@ -25,7 +25,7 @@ GitHub Pages. Your site will use &#39;rouge&#39; for
 highlighting instead. To suppress this warning,
 change the &#39;highlighter&#39; value to &#39;rouge&#39; in your 
 &#39;_config.yml&#39; and ensure the &#39;pygments&#39; key is unset. 
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/blockquote&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/blockquote&gt;
 
 &lt;p&gt;After adding rouge to the Gemfile:&lt;/p&gt;
 
@@ -41,10 +41,10 @@ change the &#39;highlighter&#39; value to &#39;rouge&#39; in your
 
 &lt;p&gt;I then ran:&lt;/p&gt;
 
-&lt;p&gt;&lt;code&gt;bash
-$ sudo gem install rouge
-$ bundle install
-&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;``` sh&lt;/p&gt;
+&lt;p&gt;$ sudo gem install rouge&lt;/p&gt;
+&lt;p&gt;$ bundle install&lt;/p&gt;
+&lt;p&gt;```&lt;/p&gt;
 
 &lt;p&gt;Before editing the _config.yml file to read as follows:&lt;/p&gt;
 
