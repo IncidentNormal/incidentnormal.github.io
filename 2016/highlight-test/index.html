@@ -6,7 +6,8 @@
   <span class="n">gem</span> <span class="s1">'jekyll'</span><span class="p">,</span> <span class="s1">'~&gt; 2.5.3'</span>
   <span class="n">gem</span> <span class="s1">'travis'</span><span class="p">,</span> <span class="s1">'~&gt; 1.8'</span>
   <span class="n">gem</span> <span class="s1">'rouge'</span><span class="p">,</span> <span class="s1">'~&gt; 2.0.6'</span>
-<span class="k">end</span></code></pre></div> <p>I then ran:</p> <p><code>shell $ if [[ $(gem query -i -d -l rouge) == "false" ]]; then sudo gem install rouge; fi $ bundle install </code></p> <p>Before editing the _config.yml file to read as follows:</p> <div class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="na">source</span><span class="pi">:</span> <span class="s">.</span>
+<span class="k">end</span></code></pre></div> <p>I then ran:</p> <div class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="gp">$ </span><span class="k">if</span> <span class="o">[[</span> <span class="k">$(</span>gem query -i -d -l rouge<span class="k">)</span> <span class="o">==</span> <span class="s2">"false"</span> <span class="o">]]</span>; <span class="k">then </span>sudo gem install rouge; <span class="k">fi</span>
+<span class="gp">$ </span>bundle install</code></pre></div> <p>Before editing the _config.yml file to read as follows:</p> <div class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="na">source</span><span class="pi">:</span> <span class="s">.</span>
 <span class="na">destination</span><span class="pi">:</span> <span class="s">_site</span>
 <span class="na">sass</span><span class="pi">:</span>
   <span class="na">sass_dir</span><span class="pi">:</span> <span class="s">_sass</span>
