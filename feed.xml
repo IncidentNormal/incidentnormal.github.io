@@ -6,8 +6,8 @@
 </description>
     <link>https://incidentnormal.github.io/</link>
     <atom:link href="https://incidentnormal.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 23 Sep 2016 00:15:06 +0100</pubDate>
-    <lastBuildDate>Fri, 23 Sep 2016 00:15:06 +0100</lastBuildDate>
+    <pubDate>Fri, 23 Sep 2016 00:16:15 +0100</pubDate>
+    <lastBuildDate>Fri, 23 Sep 2016 00:16:15 +0100</lastBuildDate>
     <generator>Jekyll v2.5.3</generator>
     
       <item>
@@ -53,9 +53,7 @@
 &lt;span class=&quot;c1&quot;&gt;# permalink and highlighter&lt;/span&gt;
 &lt;span class=&quot;na&quot;&gt;permalink   &lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/:year/:title/&lt;/span&gt;
 &lt;span class=&quot;na&quot;&gt;markdown    &lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;kramdown&lt;/span&gt;
-&lt;span class=&quot;na&quot;&gt;kramdown&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;input&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;GFM&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;syntax_highlighter &lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;rouge&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;span class=&quot;na&quot;&gt;highlighter &lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;rouge&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Finally, with all this changed - we can re-deploy the site:&lt;/p&gt;
 

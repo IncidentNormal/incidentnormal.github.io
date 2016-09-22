@@ -25,9 +25,7 @@
 <span class="c1"># permalink and highlighter</span>
 <span class="na">permalink   </span><span class="pi">:</span> <span class="s">/:year/:title/</span>
 <span class="na">markdown    </span><span class="pi">:</span> <span class="s">kramdown</span>
-<span class="na">kramdown</span><span class="pi">:</span>
-  <span class="na">input</span><span class="pi">:</span> <span class="s">GFM</span>
-  <span class="na">syntax_highlighter </span><span class="pi">:</span> <span class="s">rouge</span></code></pre></div> <p>Finally, with all this changed - we can re-deploy the site:</p> <div class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="gp">user@host/dir]$ </span>./deploy.sh</code></pre></div> <p>Apparently, “Jekyll also offers powerful support for code snippets”, lets see:</p> <div class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="na">highlighter </span><span class="pi">:</span> <span class="s">rouge</span></code></pre></div> <p>Finally, with all this changed - we can re-deploy the site:</p> <div class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="gp">user@host/dir]$ </span>./deploy.sh</code></pre></div> <p>Apparently, “Jekyll also offers powerful support for code snippets”, lets see:</p> <div class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
 <span class="kn">import</span> <span class="nn">random</span> <span class="k">as</span> <span class="n">rnd</span>
 
 <span class="k">class</span> <span class="nc">G</span><span class="p">():</span>
