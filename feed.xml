@@ -6,8 +6,8 @@
 </description>
     <link>https://incidentnormal.github.io/</link>
     <atom:link href="https://incidentnormal.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 23 Sep 2016 00:45:10 +0100</pubDate>
-    <lastBuildDate>Fri, 23 Sep 2016 00:45:10 +0100</lastBuildDate>
+    <pubDate>Fri, 23 Sep 2016 00:57:54 +0100</pubDate>
+    <lastBuildDate>Fri, 23 Sep 2016 00:57:54 +0100</lastBuildDate>
     <generator>Jekyll v2.5.3</generator>
     
       <item>
@@ -16,14 +16,14 @@
 
 &lt;p&gt;The email:&lt;/p&gt;
 &lt;blockquote cite=&quot;support@github.com&quot;&gt;
-&lt;em&gt;&lt;p&gt;The page build completed successfully, but returned the following warning:
+&lt;b&gt;&lt;em&gt;&lt;p&gt;The page build completed successfully, but returned the following warning:
 You are attempting to use the &#39;pygments&#39; highlighter, which is currently unsupported on 
 GitHub Pages. Your site will use &#39;rouge&#39; for highlighting instead.&lt;/p&gt;
 &lt;p&gt;To suppress this warning, change the &#39;highlighter&#39; value to &#39;rouge&#39; in your &#39;_config.yml&#39; 
-and ensure the &#39;pygments&#39; key is unset.&lt;/p&gt;&lt;/em&gt;
+and ensure the &#39;pygments&#39; key is unset.&lt;/p&gt;&lt;/em&gt;&lt;/b&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;After adding rouge to the Gemfile:&lt;/p&gt;
+&lt;p&gt;After adding &lt;code&gt;rouge&lt;/code&gt; to the Gemfile:&lt;/p&gt;
 
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;n&quot;&gt;source&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;https://rubygems.org&#39;&lt;/span&gt;
 
@@ -40,7 +40,7 @@ and ensure the &#39;pygments&#39; key is unset.&lt;/p&gt;&lt;/em&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[[&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;gem query -i -d -l rouge&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;false&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;]]&lt;/span&gt;; &lt;span class=&quot;k&quot;&gt;then &lt;/span&gt;sudo gem install rouge; &lt;span class=&quot;k&quot;&gt;fi&lt;/span&gt;
 &lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;bundle install&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;Before editing the _config.yml file to read as follows:&lt;/p&gt;
+&lt;p&gt;Before editing the &lt;code&gt;_config.yml&lt;/code&gt; file to read as follows:&lt;/p&gt;
 
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-yaml&quot; data-lang=&quot;yaml&quot;&gt;&lt;span class=&quot;na&quot;&gt;source&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;.&lt;/span&gt;
 &lt;span class=&quot;na&quot;&gt;destination&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;_site&lt;/span&gt;
@@ -55,9 +55,15 @@ and ensure the &#39;pygments&#39; key is unset.&lt;/p&gt;&lt;/em&gt;
 
 &lt;p&gt;Finally, with all this changed - we can re-deploy the site:&lt;/p&gt;
 
-&lt;p&gt;&lt;code&gt;bash
-$ ./deploy.sh
-&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;bundle &lt;span class=&quot;nb&quot;&gt;exec &lt;/span&gt;jekyll build
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;HTML_FOLDER&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;pwd&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;/_site/
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git config --global user.email &lt;span class=&quot;s2&quot;&gt;&quot;name@example.com&quot;&lt;/span&gt;
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git config --global user.name &lt;span class=&quot;s2&quot;&gt;&quot;Exemplar II&quot;&lt;/span&gt;
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[[&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;git remote&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; !&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;origin&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;]]&lt;/span&gt;; &lt;span class=&quot;k&quot;&gt;then &lt;/span&gt;git remote add origin git@github.com:&lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;github_username&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;/&lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;github_username&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;.github.io.git; &lt;span class=&quot;k&quot;&gt;fi&lt;/span&gt;
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git init
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git add --all
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git commit -m &lt;span class=&quot;s2&quot;&gt;&quot;Deploy Jekyll to GitHub Pages @ (&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;date&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;)&quot;&lt;/span&gt;
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git push origin master&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Apparently, “Jekyll also offers powerful support for code snippets”, lets see:&lt;/p&gt;
 
@@ -128,9 +134,13 @@ $ ./deploy.sh
         
 &lt;span class=&quot;n&quot;&gt;R&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;RunMain&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;Final guidance:&lt;/p&gt;
+&lt;p&gt;Radical. Check the following links for more information / further reading:&lt;/p&gt;
 
-&lt;p&gt;Check out the &lt;a href=&quot;http://jekyllrb.com/docs/home&quot;&gt;Jekyll docs&lt;/a&gt; for more info on how to get the most out of Jekyll. File all bugs/feature requests at &lt;a href=&quot;https://github.com/jekyll/jekyll&quot;&gt;Jekyll’s GitHub repo&lt;/a&gt;. If you have questions, you can ask them on &lt;a href=&quot;https://talk.jekyllrb.com/&quot;&gt;Jekyll Talk&lt;/a&gt;.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;http://jekyllrb.com/docs/home&quot;&gt;Jekyll docs&lt;/a&gt; for more info on how to get the most out of Jekyll.&lt;/li&gt;
+  &lt;li&gt;File all bugs/feature requests at &lt;a href=&quot;https://github.com/jekyll/jekyll&quot;&gt;Jekyll’s GitHub repo&lt;/a&gt;.&lt;/li&gt;
+  &lt;li&gt;If you have questions, you can ask them on &lt;a href=&quot;https://talk.jekyllrb.com/&quot;&gt;Jekyll Talk&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
 
 </description>
         <pubDate>Thu, 22 Sep 2016 23:45:53 +0100</pubDate>
