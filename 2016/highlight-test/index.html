@@ -1,0 +1,96 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <meta name="viewport" content="width=device-width, initial-scale=1"> <title>Messin' with the Syntax Highlighter</title> <meta name="description" content="Due to a repeated warning email from github every time I deployed a change to the page; I decided to try and get to the bottom of it."> <link rel="stylesheet" href="/assets/css/main.css"> <link rel="canonical" href="https://incidentnormal.github.io/2016/highlight-test/"> <link rel="alternate" type="application/rss+xml" title="IncidentNormal" href="https://incidentnormal.github.io/feed.xml"> <script src="/assets/js/modernizr.js"></script> </head> <body"> <main class="wrapper"> <header class="site-header"> <a href="#navbar" id="menu-burger" class="menu-burger">Menu <span class="nav-icon"></span> <svg x="0px" y="0px" width="54px" height="54px" viewBox="0 0 54 54"> <circle fill="transparent" stroke="#000000" stroke-width="1" cx="27" cy="27" r="25" stroke-dasharray="157 157" stroke-dashoffset="157"></circle> </svg> </a> <div id="navbar" class="navbar"> <div class="navigation-wrapper"> <div class="half-block"> <h2>Navigation</h2> <nav> <ul class="primary-nav"> <li><a href="/">Home</a></li> <li><a href="/blog">Blog</a></li> <li><a href="/about">About</a></li> <li><a href="https://github.com/IncidentNormal" target="_blank"><i class="icon icon-github"></i> Github</a></li> <li><a href="https://twitter.com" target="_blank"><i class="icon icon-twitter"></i> Twitter</a></li> <li><a href="/feed.xml" target="_blank"><i class="icon icon-feed"></i> RSS</a></li> </ul> </nav> </div> </div> </div> </header> <article class="post" itemscope itemtype="http://schema.org/BlogPosting"> <header class="post-header intro"> <div class="intro-in"> <h1 class="post-title" itemprop="name headline">Messin' with the Syntax Highlighter</h1> <p class="post-meta"><time datetime="2016-09-22T23:45:53+01:00" itemprop="datePublished">Sep 22, 2016</time></p> </div> </header> <div class="post-content container" itemprop="articleBody"> <p>Due to a repeated warning email from github every time I deployed a change to the page; I decided to try and get to the bottom of it.</p> <div class="highlight"><pre><code class="language-markdown" data-lang="markdown"><span class="gh"># The email:</span>
+<span class="gt">&gt; The page build completed successfully, </span>
+<span class="gt">&gt; but returned the following warning:</span>
+<span class="gt">&gt;</span>
+<span class="gt">&gt; You are attempting to use the 'pygments' </span>
+<span class="gt">&gt; highlighter, which is currently unsupported on </span>
+<span class="gt">&gt; GitHub Pages. Your site will use 'rouge' for </span>
+<span class="gt">&gt; highlighting instead. To suppress this warning,</span>
+<span class="gt">&gt; change the 'highlighter' value to 'rouge' in your </span>
+<span class="gt">&gt; '_config.yml' and ensure the 'pygments' key is unset.</span></code></pre></div> <p>After adding rouge to the Gemfile:</p> <div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">source</span> <span class="s1">'https://rubygems.org'</span>
+
+<span class="n">group</span> <span class="ss">:development</span> <span class="k">do</span>
+  <span class="n">gem</span> <span class="s1">'rake'</span><span class="p">,</span> <span class="s1">'~&gt; 10.4.2'</span>
+  <span class="n">gem</span> <span class="s1">'sass'</span><span class="p">,</span> <span class="s1">'~&gt; 3.4.10'</span>
+  <span class="n">gem</span> <span class="s1">'jekyll'</span><span class="p">,</span> <span class="s1">'~&gt; 2.5.3'</span>
+  <span class="n">gem</span> <span class="s1">'travis'</span><span class="p">,</span> <span class="s1">'~&gt; 1.8'</span>
+  <span class="n">gem</span> <span class="s1">'rouge'</span><span class="p">,</span> <span class="s1">'~&gt; 2.0.6'</span>
+<span class="k">end</span></code></pre></div> <p>I then ran:</p> <div class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="gp">user@host/dir]$ </span>sudo gem install rouge
+<span class="gp">user@host/dir]$ </span>bundle install</code></pre></div> <p>Before editing the _config.yml file to read as follows:</p> <div class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="na">source</span><span class="pi">:</span> <span class="s">.</span>
+<span class="na">destination</span><span class="pi">:</span> <span class="s">_site</span>
+<span class="na">sass</span><span class="pi">:</span>
+  <span class="na">sass_dir</span><span class="pi">:</span> <span class="s">_sass</span>
+  <span class="na">style</span><span class="pi">:</span> <span class="s">expanded</span> <span class="c1"># compressed # expanded</span>
+
+<span class="c1"># permalink and highlighter</span>
+<span class="na">permalink   </span><span class="pi">:</span> <span class="s">/:year/:title/</span>
+<span class="na">markdown    </span><span class="pi">:</span> <span class="s">kramdown</span>
+<span class="na">kramdown</span><span class="pi">:</span>
+  <span class="na">input</span><span class="pi">:</span> <span class="s">GFM</span>
+  <span class="na">syntax_highlighter </span><span class="pi">:</span> <span class="s">rouge</span></code></pre></div> <p>Finally, with all this changed - we can re-deploy the site:</p> <div class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="gp">user@host/dir]$ </span>./deploy.sh</code></pre></div> <p>Apparently, “Jekyll also offers powerful support for code snippets”, lets see:</p> <div class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">import</span> <span class="nn">random</span> <span class="k">as</span> <span class="n">rnd</span>
+
+<span class="k">class</span> <span class="nc">G</span><span class="p">():</span>
+    <span class="n">NUM_INITIAL_NODES</span> <span class="o">=</span> <span class="mi">10</span>
+    <span class="n">NUM_GEN_NODES</span> <span class="o">=</span> <span class="mi">90</span>
+    <span class="n">MEAN_DEGREE</span> <span class="o">=</span> <span class="mi">4</span>
+    <span class="n">MU</span> <span class="o">=</span> <span class="mf">0.2</span>
+
+<span class="k">class</span> <span class="nc">Node</span><span class="p">():</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">ID</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ID</span> <span class="o">=</span> <span class="n">ID</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">active</span> <span class="o">=</span> <span class="bp">False</span>
+
+<span class="k">class</span> <span class="nc">NetworkCreation</span><span class="p">():</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nodeList</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">edgeList</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">def</span> <span class="nf">createInitialNodes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">NUM_INITIAL_NODES</span><span class="p">):</span>
+            <span class="n">N</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+            <span class="n">N</span><span class="o">.</span><span class="n">active</span> <span class="o">=</span> <span class="bp">True</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">nodeList</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">createGenNodes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">NUM_GEN_NODES</span><span class="p">):</span>
+            <span class="n">N</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="n">G</span><span class="o">.</span><span class="n">NUM_INITIAL_NODES</span><span class="p">)</span>
+            <span class="k">print</span> <span class="n">N</span><span class="o">.</span><span class="n">ID</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">createGenEdges</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+            <span class="n">N</span><span class="o">.</span><span class="n">active</span> <span class="o">==</span> <span class="bp">True</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">nodeList</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+        <span class="n">activeList</span> <span class="o">=</span> <span class="p">[</span><span class="n">N</span> <span class="k">for</span> <span class="n">N</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodeList</span> <span class="k">if</span> <span class="n">N</span><span class="o">.</span><span class="n">active</span><span class="o">==</span><span class="bp">True</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">aN</span> <span class="ow">in</span> <span class="n">activeList</span><span class="p">:</span>
+            <span class="n">rndDeac</span> <span class="o">=</span> <span class="n">rnd</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">activeList</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">activeList</span><span class="p">[</span><span class="n">rndDeac</span><span class="p">]</span><span class="o">.</span><span class="n">active</span><span class="o">=</span><span class="bp">False</span>
+            <span class="c">#randomly deactivate one, with variable probabilities.</span>
+            
+    <span class="k">def</span> <span class="nf">createInitialEdges</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">N1</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodeList</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">N2</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodeList</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">N1</span><span class="o">&gt;</span><span class="n">N2</span><span class="p">:</span>
+                    <span class="n">addEdge</span> <span class="o">=</span> <span class="p">[</span><span class="n">N1</span><span class="o">.</span><span class="n">ID</span><span class="p">,</span><span class="n">N2</span><span class="o">.</span><span class="n">ID</span><span class="p">]</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">edgeList</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">addEdge</span><span class="p">)</span>
+                    
+    <span class="k">def</span> <span class="nf">createGenEdges</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">node</span><span class="p">):</span>
+        <span class="n">activeList</span> <span class="o">=</span> <span class="p">[</span><span class="n">N</span> <span class="k">for</span> <span class="n">N</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodeList</span> <span class="k">if</span> <span class="n">N</span><span class="o">.</span><span class="n">active</span><span class="o">==</span><span class="bp">True</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">N</span> <span class="ow">in</span> <span class="n">activeList</span><span class="p">:</span>
+            <span class="n">rndX</span> <span class="o">=</span> <span class="n">rnd</span><span class="o">.</span><span class="n">random</span><span class="p">()</span>
+            <span class="k">print</span> <span class="n">rndX</span>
+            <span class="k">if</span> <span class="n">rndX</span> <span class="o">&lt;</span> <span class="n">G</span><span class="o">.</span><span class="n">MU</span><span class="p">:</span>
+                <span class="n">rndEdge</span><span class="o">=</span><span class="n">rnd</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nodeList</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+                <span class="n">newEdge</span><span class="o">=</span><span class="p">[</span><span class="n">node</span><span class="o">.</span><span class="n">ID</span><span class="p">,</span><span class="n">rndEdge</span><span class="p">]</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">edgeList</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">newEdge</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">newEdge</span><span class="o">=</span><span class="p">[</span><span class="n">node</span><span class="o">.</span><span class="n">ID</span><span class="p">,</span><span class="n">N</span><span class="o">.</span><span class="n">ID</span><span class="p">]</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">edgeList</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">newEdge</span><span class="p">)</span>
+                    
+<span class="k">class</span> <span class="nc">RunMain</span><span class="p">():</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">Net</span> <span class="o">=</span> <span class="n">NetworkCreation</span><span class="p">()</span>
+        <span class="n">Net</span><span class="o">.</span><span class="n">createInitialNodes</span><span class="p">()</span>
+        <span class="n">Net</span><span class="o">.</span><span class="n">createInitialEdges</span><span class="p">()</span>
+        <span class="k">print</span> <span class="n">Net</span><span class="o">.</span><span class="n">edgeList</span>
+        <span class="n">Net</span><span class="o">.</span><span class="n">createGenNodes</span><span class="p">()</span>
+        <span class="k">print</span> <span class="n">Net</span><span class="o">.</span><span class="n">edgeList</span>
+        
+<span class="n">R</span> <span class="o">=</span> <span class="n">RunMain</span><span class="p">()</span>
+<span class="c">#=&gt; Prints 'Topology (number of edges/connected number of nodes/connected) to STDOUT.</span></code></pre></div> <p>Final guidance:</p> <p>Check out the <a href="http://jekyllrb.com/docs/home">Jekyll docs</a> for more info on how to get the most out of Jekyll. File all bugs/feature requests at <a href="https://github.com/jekyll/jekyll">Jekyll’s GitHub repo</a>. If you have questions, you can ask them on <a href="https://talk.jekyllrb.com/">Jekyll Talk</a>.</p> </div> </article> <footer class="site-footer"> <div class="container"> <ul class="social"> <li><a href="" target="_blank"><i class="icon icon-github"></i></a></li> <li><a href="" target="_blank"><i class="icon icon-linkedin"></i></a></li> <li><a href="" target="_blank"><i class="icon icon-twitter"></i></a></li> </ul> <p> <small>&copy;2016 All rights reserved. Made with <a href="http://jekyllrb.com/" target="_blank">Jekyll</a> and ♥</small> </p> </div> </footer> </main> <script src="/assets/js/jquery-2.1.1.js"></script> <script src="/assets/js/main.js"></script> </body> </html><!-- by incidentnormal -->
