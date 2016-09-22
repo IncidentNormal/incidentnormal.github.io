@@ -21,7 +21,7 @@ git config --global user.name "IncidentNormal"
 
 # deploy
 git init
-git remote add origin git@github.com:IncidentNormal/incidentnormal.github.io.git
+#git remote add origin git@github.com:IncidentNormal/incidentnormal.github.io.git
 git add --all
 git commit -m "Deploy to GitHub Pages @ ($(date))"
 #git push --force --quiet "https://${GH_TOKEN}@github.com/${GH_REF}" master:gh-pages
