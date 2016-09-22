@@ -6,8 +6,8 @@
 </description>
     <link>https://incidentnormal.github.io/</link>
     <atom:link href="https://incidentnormal.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 23 Sep 2016 00:38:00 +0100</pubDate>
-    <lastBuildDate>Fri, 23 Sep 2016 00:38:00 +0100</lastBuildDate>
+    <pubDate>Fri, 23 Sep 2016 00:43:08 +0100</pubDate>
+    <lastBuildDate>Fri, 23 Sep 2016 00:43:08 +0100</lastBuildDate>
     <generator>Jekyll v2.5.3</generator>
     
       <item>
@@ -37,10 +37,10 @@ and ensure the &#39;pygments&#39; key is unset.
 
 &lt;p&gt;I then ran:&lt;/p&gt;
 
-&lt;p&gt;``` sh&lt;/p&gt;
-&lt;p&gt;$ sudo gem install rouge&lt;/p&gt;
-&lt;p&gt;$ bundle install&lt;/p&gt;
-&lt;p&gt;```&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;shell
+$ if [[ $(gem query -i -d -l rouge) == &quot;false&quot; ]]; then sudo gem install rouge; fi
+$ bundle install
+&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;Before editing the _config.yml file to read as follows:&lt;/p&gt;
 
