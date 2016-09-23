@@ -334,9 +334,9 @@
         <span class="k">if</span> <span class="o">[</span> <span class="nv">$CURRENT_VPN_INDEX</span> -eq <span class="k">${#</span><span class="nv">VPNLIST</span><span class="p">[@]</span><span class="k">}</span> <span class="o">]</span>
         <span class="k">then
             </span><span class="nv">CURRENT_VPN_INDEX</span><span class="o">=</span>0; <span class="nb">export </span>CURRENT_VPN_INDEX;
-        <span class="k">fi
+        <span class="k">fi</span>;
 
-        </span><span class="nb">echo</span> <span class="s2">"</span><span class="k">$(</span>date<span class="k">)</span><span class="s2"> :: &gt; &gt; &gt; NEW_VPN_INDEX: </span><span class="nv">$CURRENT_VPN_INDEX</span><span class="s2">"</span> &gt;&gt; <span class="s2">"</span><span class="nv">$DEBUG_LOG_FILE_PATH</span><span class="s2">"</span>;
+        <span class="nb">echo</span> <span class="s2">"</span><span class="k">$(</span>date<span class="k">)</span><span class="s2"> :: &gt; &gt; &gt; NEW_VPN_INDEX: </span><span class="nv">$CURRENT_VPN_INDEX</span><span class="s2">"</span> &gt;&gt; <span class="s2">"</span><span class="nv">$DEBUG_LOG_FILE_PATH</span><span class="s2">"</span>;
 
         <span class="nv">nextVpn</span><span class="o">=</span><span class="s2">"</span><span class="k">${</span><span class="nv">VPNLIST</span><span class="p">[</span><span class="nv">$CURRENT_VPN_INDEX</span><span class="p">]</span><span class="k">}</span><span class="s2">"</span>;
         <span class="nb">echo</span> <span class="s2">"</span><span class="k">$(</span>date<span class="k">)</span><span class="s2"> :: &gt; &gt; &gt; nextVpn: </span><span class="nv">$nextVpn</span><span class="s2">"</span> &gt;&gt; <span class="s2">"</span><span class="nv">$DEBUG_LOG_FILE_PATH</span><span class="s2">"</span>;
