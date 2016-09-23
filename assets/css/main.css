@@ -1240,15 +1240,14 @@ body.navigation-is-open .menu-burger {
 
 .site-footer {
   text-align: center;
-  padding: 2em;
+  padding-bottom: 2em;
   background-color: #dcdaf5;
 }
 .site-footer .container {
-  padding: 2em;
-  background-color: #e6f2fc;
+  padding-top: 3em;
 }
 .site-footer p {
-  margin-bottom: 5px;
+  margin-bottom: 1em;
   color: #141414;
   float: left;
 }
