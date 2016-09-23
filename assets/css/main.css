@@ -1240,11 +1240,11 @@ body.navigation-is-open .menu-burger {
 .site-footer {
   padding: 2em 0;
   text-align: center;
-  background-color: #bdbbeb;
 }
 .site-footer .container {
   padding-top: 2em;
   border-top: 1px solid #e6e6e6;
+  background-color: white;
 }
 .site-footer p {
   margin-bottom: 0;
