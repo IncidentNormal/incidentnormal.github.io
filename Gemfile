@@ -8,4 +8,5 @@ group :development do
   gem 'jekyll', '~> 2.5.3'
   gem 'travis', '~> 1.8'
   gem 'rouge', '~> 2.0.6'
+  gem 'jekyll-sitemap'
 end
