@@ -360,8 +360,8 @@ select {
 ul,
 ol {
   list-style-type: circle;
-  margin: 1em;
-  padding: 2em;
+  margin-bottom: 1em;
+  padding-left: 2em;
 }
 dl {
   margin-bottom: 1em;
