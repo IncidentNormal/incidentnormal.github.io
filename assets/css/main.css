@@ -947,6 +947,10 @@ body.navigation-is-open .menu-burger {
   margin-bottom: 2em;
   border-bottom: 1px solid #f2f2f2;
 }
+.post-item li {
+  display: inline-block;
+  margin-left: 5px;
+}
 .post-item .post-title {
   margin-bottom: 10px;
 }
