@@ -6,8 +6,8 @@
 </description>
     <link>https://incidentnormal.github.io/</link>
     <atom:link href="https://incidentnormal.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 23 Sep 2016 06:08:28 +0100</pubDate>
-    <lastBuildDate>Fri, 23 Sep 2016 06:08:28 +0100</lastBuildDate>
+    <pubDate>Fri, 23 Sep 2016 06:09:39 +0100</pubDate>
+    <lastBuildDate>Fri, 23 Sep 2016 06:09:39 +0100</lastBuildDate>
     <generator>Jekyll v2.5.3</generator>
     
       <item>
@@ -702,7 +702,7 @@ default:other::r-x&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;So, for instance, in my &lt;code&gt;/etc/openvpn&lt;/code&gt; directory:&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;&lt;span class=&quot;gp&quot;&gt;ctl@selector:/etc/openvpn$ &lt;/span&gt;ls -l
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;&lt;span class=&quot;gp&quot;&gt;dev@srv:/etc/openvpn$ &lt;/span&gt;ls -l
 total 84
 -rwxrwx--- 1 root    root    2992 Sep  1 02:45 coventry.ovpn
 -rwxrwx--- 1 root    root    2992 Jun 25 03:15 finland.ovpn
