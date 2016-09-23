@@ -939,7 +939,8 @@ body.navigation-is-open .menu-burger {
 }
 
 .post-meta {
-  font-style: italic;
+  font-size: small;
+  font-weight: 400;
 }
 
 .post-item {
