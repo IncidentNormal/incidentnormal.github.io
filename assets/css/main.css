@@ -832,9 +832,9 @@ body.home-intro .intro {
 .navbar h2 {
   position: relative;
   margin-bottom: 1.7em;
-  font-size: 1.3rem;
+  font-size: 1.5rem;
   font-weight: 800;
-  color: #5650cd;
+  color: #7c77d8;
   text-transform: uppercase;
 }
 .navbar h2::after {
@@ -856,7 +856,7 @@ body.home-intro .intro {
 .navbar .primary-nav a {
   font-size: 1.4rem;
   text-decoration: none;
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.16);
   font-weight: 400;
   display: inline-block;
 }
