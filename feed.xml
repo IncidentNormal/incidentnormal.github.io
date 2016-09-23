@@ -6,8 +6,8 @@
 </description>
     <link>https://incidentnormal.github.io/</link>
     <atom:link href="https://incidentnormal.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 23 Sep 2016 06:21:25 +0100</pubDate>
-    <lastBuildDate>Fri, 23 Sep 2016 06:21:25 +0100</lastBuildDate>
+    <pubDate>Fri, 23 Sep 2016 06:32:18 +0100</pubDate>
+    <lastBuildDate>Fri, 23 Sep 2016 06:32:18 +0100</lastBuildDate>
     <generator>Jekyll v2.5.3</generator>
     
       <item>
@@ -726,6 +726,17 @@ lrwxrwxrwx 1 vpnuser vpnuser   25 Sep 13 19:44 vpnx.conf -&amp;gt; /etc/openvpn/
 
 &lt;p&gt;And contained within each of these ovpn files are:&lt;/p&gt;
 
+&lt;ul&gt;
+  &lt;li&gt;connection parameters, including:&lt;/li&gt;
+  &lt;li&gt;cipher&lt;/li&gt;
+  &lt;li&gt;auth&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;auth-user-pass /path/to/vpn.credentials&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;ca certificate (inside &amp;lt;ca&amp;gt; &amp;lt;/ca&amp;gt; tags)&lt;/li&gt;
+  &lt;li&gt;tls key (inside &amp;lt;tls-auth&amp;gt; &amp;lt;/tls-auth&amp;gt; tags)&lt;/li&gt;
+&lt;/ul&gt;
+
 &lt;default-ul&gt;
   &lt;li&gt;connection parameters, including:
   &lt;default-ul-2&gt;
@@ -734,8 +745,8 @@ lrwxrwxrwx 1 vpnuser vpnuser   25 Sep 13 19:44 vpnx.conf -&amp;gt; /etc/openvpn/
 	&lt;li&gt;auth-user-pass /path/to/vpn.credentials&lt;/li&gt;
   &lt;/default-ul-2&gt;
   &lt;/li&gt;
-  &lt;li&gt;ca certificate (inside &lt;ca&gt; &lt;/ca&gt; tags)&lt;/li&gt;
-  &lt;li&gt;tls key (inside &lt;tls-auth&gt;&lt;/tls-auth&gt; tags)&lt;/li&gt;
+  &lt;li&gt;ca certificate (inside &amp;lt;ca&amp;gt; &amp;lt;/ca&amp;gt; tags)&lt;/li&gt;
+  &lt;li&gt;tls key (inside &amp;lt;tls-auth&amp;gt; &amp;lt;/tls-auth&amp;gt; tags)&lt;/li&gt;
 &lt;/default-ul&gt;
 
 &lt;p&gt;Thus each ovpn file is self-contained and contains all necessary information to create the openvpn connection.&lt;/p&gt;
