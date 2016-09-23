@@ -6,8 +6,8 @@
 </description>
     <link>https://incidentnormal.github.io/</link>
     <atom:link href="https://incidentnormal.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 23 Sep 2016 07:20:19 +0100</pubDate>
-    <lastBuildDate>Fri, 23 Sep 2016 07:20:19 +0100</lastBuildDate>
+    <pubDate>Fri, 23 Sep 2016 07:22:13 +0100</pubDate>
+    <lastBuildDate>Fri, 23 Sep 2016 07:22:13 +0100</lastBuildDate>
     <generator>Jekyll v2.5.3</generator>
     
       <item>
@@ -728,9 +728,9 @@ lrwxrwxrwx 1 vpnuser vpnuser   25 Sep 13 19:44 vpnx.conf -&amp;gt; /etc/openvpn/
 
 &lt;default-ul&gt;
 &lt;li&gt;&lt;strong&gt;connection parameters&lt;/strong&gt;, including:&lt;/li&gt;
-&amp;emsp; &amp;emsp; &amp;emsp; &amp;emsp; cipher&lt;br /&gt;
-&amp;emsp; &amp;emsp; &amp;emsp; &amp;emsp; auth&lt;br /&gt;
-&amp;emsp; &amp;emsp; &amp;emsp; &amp;emsp; auth-user-pass /path/to/vpn.credentials&lt;br /&gt;
+&amp;emsp; &amp;emsp; - &lt;i&gt;cipher&lt;/i&gt;&lt;br /&gt;
+&amp;emsp; &amp;emsp; - &lt;i&gt;auth&lt;/i&gt;&lt;br /&gt;
+&amp;emsp; &amp;emsp; - &lt;i&gt;auth-user-pass /path/to/vpn.credentials&lt;/i&gt;&lt;br /&gt;
 &lt;li&gt;&lt;strong&gt;ca certificate&lt;/strong&gt; (inside &amp;lt;ca&amp;gt; &amp;lt;/ca&amp;gt; tags)&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;tls key&lt;/strong&gt; (inside &amp;lt;tls-auth&amp;gt; &amp;lt;/tls-auth&amp;gt; tags)&lt;/li&gt;
 &lt;/default-ul&gt;
