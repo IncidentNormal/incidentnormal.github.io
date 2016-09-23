@@ -359,9 +359,9 @@ select {
 
 ul,
 ol {
-  list-style-type: circle;
-  margin-bottom: 1em;
-  padding-left: 2em;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
 }
 dl {
   margin-bottom: 1em;
