@@ -6,8 +6,8 @@
 </description>
     <link>https://incidentnormal.github.io/</link>
     <atom:link href="https://incidentnormal.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 23 Sep 2016 01:58:57 +0100</pubDate>
-    <lastBuildDate>Fri, 23 Sep 2016 01:58:57 +0100</lastBuildDate>
+    <pubDate>Fri, 23 Sep 2016 02:05:01 +0100</pubDate>
+    <lastBuildDate>Fri, 23 Sep 2016 02:05:01 +0100</lastBuildDate>
     <generator>Jekyll v2.5.3</generator>
     
       <item>
@@ -37,8 +37,8 @@ and ensure the &#39;pygments&#39; key is unset.&lt;/p&gt;&lt;/em&gt;&lt;/b&gt;
 
 &lt;p&gt;I then ran:&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shellscript&quot; data-lang=&quot;shellscript&quot;&gt;dev@srv:~/$ if [[ $(gem query -i -d -l rouge) == &quot;false&quot; ]]; then sudo gem install rouge; fi
-dev@srv:~/$ bundle install&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;gp&quot;&gt;dev@srv:~$ &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[[&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;gem query -i -d -l rouge&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;false&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;]]&lt;/span&gt;; &lt;span class=&quot;k&quot;&gt;then &lt;/span&gt;sudo gem install rouge; &lt;span class=&quot;k&quot;&gt;fi
+&lt;/span&gt;&lt;span class=&quot;gp&quot;&gt;dev@srv:~$ &lt;/span&gt;bundle install&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Before editing the &lt;code&gt;_config.yml&lt;/code&gt; file to read as follows:&lt;/p&gt;
 
@@ -55,15 +55,15 @@ dev@srv:~/$ bundle install&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Finally, with all this changed - we can re-deploy the site:&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shellscript&quot; data-lang=&quot;shellscript&quot;&gt;dev@srv:~/$ bundle exec jekyll build
-dev@srv:~/$ HTML_FOLDER=$(pwd)/_site/
-dev@srv:~/$ git config --global user.email &quot;name@example.com&quot;
-dev@srv:~/$ git config --global user.name &quot;Exemplar II&quot;
-dev@srv:~/$ if [[ &quot;$(git remote)&quot; != &quot;origin&quot; ]]; then git remote add origin git@github.com:${github_username}/${github_username}.github.io.git; fi
-dev@srv:~/$ git init
-dev@srv:~/$ git add --all
-dev@srv:~/$ git commit -m &quot;Deploy Jekyll to GitHub Pages @ ($(date))&quot;
-dev@srv:~/$ git push origin master&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;gp&quot;&gt;dev@srv:~$ &lt;/span&gt;bundle &lt;span class=&quot;nb&quot;&gt;exec &lt;/span&gt;jekyll build
+&lt;span class=&quot;gp&quot;&gt;dev@srv:~$ &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;HTML_FOLDER&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;pwd&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;/_site/
+&lt;span class=&quot;gp&quot;&gt;dev@srv:~$ &lt;/span&gt;git config --global user.email &lt;span class=&quot;s2&quot;&gt;&quot;name@example.com&quot;&lt;/span&gt;
+&lt;span class=&quot;gp&quot;&gt;dev@srv:~$ &lt;/span&gt;git config --global user.name &lt;span class=&quot;s2&quot;&gt;&quot;Exemplar II&quot;&lt;/span&gt;
+&lt;span class=&quot;gp&quot;&gt;dev@srv:~$ &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[[&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;git remote&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; !&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;origin&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;]]&lt;/span&gt;; &lt;span class=&quot;k&quot;&gt;then &lt;/span&gt;git remote add origin git@github.com:&lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;github_username&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;/&lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;github_username&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;.github.io.git; &lt;span class=&quot;k&quot;&gt;fi
+&lt;/span&gt;&lt;span class=&quot;gp&quot;&gt;dev@srv:~$ &lt;/span&gt;git init
+&lt;span class=&quot;gp&quot;&gt;dev@srv:~$ &lt;/span&gt;git add --all
+&lt;span class=&quot;gp&quot;&gt;dev@srv:~$ &lt;/span&gt;git commit -m &lt;span class=&quot;s2&quot;&gt;&quot;Deploy Jekyll to GitHub Pages @ (&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;date&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;)&quot;&lt;/span&gt;
+&lt;span class=&quot;gp&quot;&gt;dev@srv:~$ &lt;/span&gt;git push origin master&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Apparently, “Jekyll also offers powerful support for code snippets”, lets see:&lt;/p&gt;
 
