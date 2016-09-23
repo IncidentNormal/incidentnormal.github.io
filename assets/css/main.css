@@ -1244,8 +1244,17 @@ body.navigation-is-open .menu-burger {
   background-color: #dcdaf5;
 }
 .site-footer .container {
-  padding: 2em;
-  border-top: 1px solid #e6e6e6;
+  padding-top: 2em;
+  positon: relative;
+  z-index: 10;
+}
+.site-footer .container:after {
+  background-color: #e6f2fc;
+  content: '';
+  display: block;
+  position: absolute;
+  top: 2em;
+  z-index: -1;
 }
 .site-footer p {
   margin-bottom: 0;
