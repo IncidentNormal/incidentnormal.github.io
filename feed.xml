@@ -6,8 +6,8 @@
 </description>
     <link>https://incidentnormal.github.io/</link>
     <atom:link href="https://incidentnormal.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 23 Sep 2016 02:05:01 +0100</pubDate>
-    <lastBuildDate>Fri, 23 Sep 2016 02:05:01 +0100</lastBuildDate>
+    <pubDate>Fri, 23 Sep 2016 02:07:54 +0100</pubDate>
+    <lastBuildDate>Fri, 23 Sep 2016 02:07:54 +0100</lastBuildDate>
     <generator>Jekyll v2.5.3</generator>
     
       <item>
@@ -35,7 +35,7 @@ and ensure the &#39;pygments&#39; key is unset.&lt;/p&gt;&lt;/em&gt;&lt;/b&gt;
   &lt;span class=&quot;n&quot;&gt;gem&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;rouge&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;~&amp;gt; 2.0.6&#39;&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;I then ran:&lt;/p&gt;
+&lt;p&gt;Back to the Linux shell, I ran:&lt;/p&gt;
 
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;gp&quot;&gt;dev@srv:~$ &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[[&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;gem query -i -d -l rouge&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;false&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;]]&lt;/span&gt;; &lt;span class=&quot;k&quot;&gt;then &lt;/span&gt;sudo gem install rouge; &lt;span class=&quot;k&quot;&gt;fi
 &lt;/span&gt;&lt;span class=&quot;gp&quot;&gt;dev@srv:~$ &lt;/span&gt;bundle install&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
@@ -53,7 +53,7 @@ and ensure the &#39;pygments&#39; key is unset.&lt;/p&gt;&lt;/em&gt;&lt;/b&gt;
 &lt;span class=&quot;na&quot;&gt;markdown    &lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;kramdown&lt;/span&gt;
 &lt;span class=&quot;na&quot;&gt;highlighter &lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;rouge&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;Finally, with all this changed - we can re-deploy the site:&lt;/p&gt;
+&lt;p&gt;Finally, with all this changed - we can re-deploy the site from the shell (or write a &lt;code&gt;deploy.sh&lt;/code&gt; file containing the following):&lt;/p&gt;
 
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;gp&quot;&gt;dev@srv:~$ &lt;/span&gt;bundle &lt;span class=&quot;nb&quot;&gt;exec &lt;/span&gt;jekyll build
 &lt;span class=&quot;gp&quot;&gt;dev@srv:~$ &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;HTML_FOLDER&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;pwd&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;/_site/
