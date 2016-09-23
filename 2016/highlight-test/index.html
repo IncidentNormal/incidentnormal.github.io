@@ -16,15 +16,15 @@
 <span class="c1"># permalink and highlighter</span>
 <span class="na">permalink   </span><span class="pi">:</span> <span class="s">/:year/:title/</span>
 <span class="na">markdown    </span><span class="pi">:</span> <span class="s">kramdown</span>
-<span class="na">highlighter </span><span class="pi">:</span> <span class="s">rouge</span></code></pre></div> <p>Finally, with all this changed - we can re-deploy the site:</p> <div class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="gp">$ </span>bundle <span class="nb">exec </span>jekyll build
-<span class="gp">$ </span><span class="nv">HTML_FOLDER</span><span class="o">=</span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>/_site/
-<span class="gp">$ </span>git config --global user.email <span class="s2">"name@example.com"</span>
-<span class="gp">$ </span>git config --global user.name <span class="s2">"Exemplar II"</span>
-<span class="gp">$ </span><span class="k">if</span> <span class="o">[[</span> <span class="s2">"</span><span class="k">$(</span>git remote<span class="k">)</span><span class="s2">"</span> !<span class="o">=</span> <span class="s2">"origin"</span> <span class="o">]]</span>; <span class="k">then </span>git remote add origin git@github.com:<span class="k">${</span><span class="nv">github_username</span><span class="k">}</span>/<span class="k">${</span><span class="nv">github_username</span><span class="k">}</span>.github.io.git; <span class="k">fi</span>
-<span class="gp">$ </span>git init
-<span class="gp">$ </span>git add --all
-<span class="gp">$ </span>git commit -m <span class="s2">"Deploy Jekyll to GitHub Pages @ (</span><span class="k">$(</span>date<span class="k">)</span><span class="s2">)"</span>
-<span class="gp">$ </span>git push origin master</code></pre></div> <p>Apparently, “Jekyll also offers powerful support for code snippets”, lets see:</p> <div class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="na">highlighter </span><span class="pi">:</span> <span class="s">rouge</span></code></pre></div> <p>Finally, with all this changed - we can re-deploy the site:</p> <div class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="gp">dev@srv:~/$ </span>bundle <span class="nb">exec </span>jekyll build
+<span class="gp">dev@srv:~/$ </span><span class="nv">HTML_FOLDER</span><span class="o">=</span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>/_site/
+<span class="gp">dev@srv:~/$ </span>git config --global user.email <span class="s2">"name@example.com"</span>
+<span class="gp">dev@srv:~/$ </span>git config --global user.name <span class="s2">"Exemplar II"</span>
+<span class="gp">dev@srv:~/$ </span><span class="k">if</span> <span class="o">[[</span> <span class="s2">"</span><span class="k">$(</span>git remote<span class="k">)</span><span class="s2">"</span> !<span class="o">=</span> <span class="s2">"origin"</span> <span class="o">]]</span>; <span class="k">then </span>git remote add origin git@github.com:<span class="k">${</span><span class="nv">github_username</span><span class="k">}</span>/<span class="k">${</span><span class="nv">github_username</span><span class="k">}</span>.github.io.git; <span class="k">fi
+</span><span class="gp">dev@srv:~/$ </span>git init
+<span class="gp">dev@srv:~/$ </span>git add --all
+<span class="gp">dev@srv:~/$ </span>git commit -m <span class="s2">"Deploy Jekyll to GitHub Pages @ (</span><span class="k">$(</span>date<span class="k">)</span><span class="s2">)"</span>
+<span class="gp">dev@srv:~/$ </span>git push origin master</code></pre></div> <p>Apparently, “Jekyll also offers powerful support for code snippets”, lets see:</p> <div class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
 <span class="kn">import</span> <span class="nn">random</span> <span class="k">as</span> <span class="n">rnd</span>
 
 <span class="k">class</span> <span class="nc">G</span><span class="p">():</span>
