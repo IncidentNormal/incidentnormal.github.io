@@ -1247,8 +1247,8 @@ body.navigation-is-open .menu-burger {
   padding-top: 3em;
 }
 .site-footer p {
-  margin-bottom: 1em;
   color: #141414;
+  size: medium;
   float: left;
 }
 .site-footer .social {
@@ -1264,7 +1264,7 @@ body.navigation-is-open .menu-burger {
   -webkit-transition: opacity 0.15s ease-in-out;
   -moz-transition: opacity 0.15s ease-in-out;
   transition: opacity 0.15s ease-in-out;
-  color: #404040;
+  color: #2e298e;
   text-decoration: none;
   opacity: .5;
 }
