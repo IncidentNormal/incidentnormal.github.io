@@ -6,8 +6,8 @@
 </description>
     <link>https://incidentnormal.github.io/</link>
     <atom:link href="https://incidentnormal.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 23 Sep 2016 06:06:05 +0100</pubDate>
-    <lastBuildDate>Fri, 23 Sep 2016 06:06:05 +0100</lastBuildDate>
+    <pubDate>Fri, 23 Sep 2016 06:08:28 +0100</pubDate>
+    <lastBuildDate>Fri, 23 Sep 2016 06:08:28 +0100</lastBuildDate>
     <generator>Jekyll v2.5.3</generator>
     
       <item>
@@ -651,7 +651,7 @@
 &lt;span class=&quot;c&quot;&gt;# very frequent (every minute or 5)&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;/5     &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;       &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;       &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;       &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;       . &lt;span class=&quot;nv&quot;&gt;$HOME&lt;/span&gt;/.bash.d/.bash_vpn; iplogcron&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;Finally, for the script to work completely, a couple of changes need to be made to your &lt;code&gt;sudoers&lt;/code&gt; file, which should always be edited using the &lt;code&gt;visudo&lt;/code&gt; command. Once this editor is opened, the following entries need to be inserted:&lt;/p&gt;
+&lt;p&gt;Next, for the script to work completely, a couple of changes need to be made to your &lt;code&gt;sudoers&lt;/code&gt; file, which should always be edited using the &lt;code&gt;visudo&lt;/code&gt; command. Once this editor is opened, the following entries need to be inserted:&lt;/p&gt;
 
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;%vpnadmin       &lt;span class=&quot;nv&quot;&gt;ALL&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=(&lt;/span&gt;root&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; NOPASSWD: /usr/sbin/openvpn
 %vpnadmin       &lt;span class=&quot;nv&quot;&gt;ALL&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=(&lt;/span&gt;ALL&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; NOPASSWD: /usr/sbin/service openvpn &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;
@@ -663,7 +663,7 @@ vpnuser         &lt;span class=&quot;nv&quot;&gt;ALL&lt;/span&gt;&lt;span class=
 &lt;span class=&quot;gp&quot;&gt;root@srv:~# &lt;/span&gt;addgroup vpnadmin
 &lt;span class=&quot;gp&quot;&gt;root@srv:~# &lt;/span&gt;usermod -a -G vpnadmin vpnuser&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;We will also need &lt;code&gt;acl&lt;/code&gt; (Access Control List) utilities for manipulating extended attributes of &lt;code&gt;/etc/openvpn&lt;/code&gt; and it’s contents (specifically allowing &lt;code&gt;vpnuser&lt;/code&gt; to access them with elevated privileges. First:&lt;/p&gt;
+&lt;p&gt;We will also need &lt;code&gt;acl&lt;/code&gt; (Access Control List) utilities for manipulating extended attributes of &lt;code&gt;/etc/openvpn&lt;/code&gt; and it’s contents (specifically allowing &lt;code&gt;vpnuser&lt;/code&gt; to access them with elevated privileges). First:&lt;/p&gt;
 
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;gp&quot;&gt;root@srv:~# &lt;/span&gt;apt update
 &lt;span class=&quot;gp&quot;&gt;root@srv:~# &lt;/span&gt;apt install acl libacl&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
@@ -702,7 +702,7 @@ default:other::r-x&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;So, for instance, in my &lt;code&gt;/etc/openvpn&lt;/code&gt; directory:&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;gp&quot;&gt;ctl@selector:/etc/openvpn$ &lt;/span&gt;ls -l
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;&lt;span class=&quot;gp&quot;&gt;ctl@selector:/etc/openvpn$ &lt;/span&gt;ls -l
 total 84
 -rwxrwx--- 1 root    root    2992 Sep  1 02:45 coventry.ovpn
 -rwxrwx--- 1 root    root    2992 Jun 25 03:15 finland.ovpn
@@ -742,18 +742,18 @@ lrwxrwxrwx 1 vpnuser vpnuser   25 Sep 13 19:44 vpnx.conf -&amp;gt; /etc/openvpn/
 
 &lt;p&gt;In the Linux shell, you can run:&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;gp&quot;&gt;dev@srv:~$ &lt;/span&gt;fsvpn portugal
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;&lt;span class=&quot;gp&quot;&gt;dev@srv:~$ &lt;/span&gt;fsvpn portugal
  &amp;gt; &amp;gt; &amp;gt; CHANGING VPN TO &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;portugal] :: index &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;12] &amp;gt; &amp;gt; &amp;gt;
 New VPN Location: Lisboa, Portugal :: &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;IP Address: 94.1.2.3]&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Finally, to use the geoCoding / location capabilities, you’ll need to install &lt;code&gt;jq&lt;/code&gt; and &lt;code&gt;xmlstarlet&lt;/code&gt; which are used to parse the API responses:&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;gp&quot;&gt;dev@srv:~$ &lt;/span&gt;sudo apt update
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;&lt;span class=&quot;gp&quot;&gt;dev@srv:~$ &lt;/span&gt;sudo apt update
 &lt;span class=&quot;gp&quot;&gt;dev@srv:~$ &lt;/span&gt;sudo apt install jq xmlstarlet&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Then try out the functions by themselves:&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;gp&quot;&gt;dev@srv:~$ &lt;/span&gt;gloc
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;&lt;span class=&quot;gp&quot;&gt;dev@srv:~$ &lt;/span&gt;gloc
 Stockholm, Sweden
 &lt;span class=&quot;gp&quot;&gt;dev@srv:~$ &lt;/span&gt;glocip 8.8.8.8
 Mount Hope, United States&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
