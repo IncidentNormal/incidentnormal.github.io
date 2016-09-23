@@ -1241,20 +1241,11 @@ body.navigation-is-open .menu-burger {
 .site-footer {
   padding: 2em 0;
   text-align: center;
-  background-color: #dcdaf5;
+  background-color: #e6f2fc;
 }
 .site-footer .container {
   padding-top: 2em;
-  positon: relative;
-  z-index: 10;
-}
-.site-footer .container:after {
-  background-color: #e6f2fc;
-  content: '';
-  display: block;
-  position: absolute;
-  top: 2em;
-  z-index: -1;
+  background-color: #dcdaf5;
 }
 .site-footer p {
   margin-bottom: 0;
