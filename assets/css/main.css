@@ -1240,15 +1240,15 @@ body.navigation-is-open .menu-burger {
 .site-footer {
   padding: 2em 0;
   text-align: center;
+  background-color: white;
 }
 .site-footer .container {
   padding-top: 2em;
   border-top: 1px solid #e6e6e6;
-  background-color: white;
 }
 .site-footer p {
   margin-bottom: 0;
-  color: #404040;
+  color: #141414;
   float: left;
 }
 .site-footer .social {
@@ -1263,7 +1263,7 @@ body.navigation-is-open .menu-burger {
   -webkit-transition: opacity 0.15s ease-in-out;
   -moz-transition: opacity 0.15s ease-in-out;
   transition: opacity 0.15s ease-in-out;
-  color: #737373;
+  color: #404040;
   text-decoration: none;
   opacity: .5;
 }
