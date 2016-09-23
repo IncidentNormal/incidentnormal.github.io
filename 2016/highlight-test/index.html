@@ -6,8 +6,8 @@
   <span class="n">gem</span> <span class="s1">'jekyll'</span><span class="p">,</span> <span class="s1">'~&gt; 2.5.3'</span>
   <span class="n">gem</span> <span class="s1">'travis'</span><span class="p">,</span> <span class="s1">'~&gt; 1.8'</span>
   <span class="n">gem</span> <span class="s1">'rouge'</span><span class="p">,</span> <span class="s1">'~&gt; 2.0.6'</span>
-<span class="k">end</span></code></pre></div> <p>I then ran:</p> <div class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="gp">dev@srv:~/$ </span><span class="k">if</span> <span class="o">[[</span> <span class="k">$(</span>gem query -i -d -l rouge<span class="k">)</span> <span class="o">==</span> <span class="s2">"false"</span> <span class="o">]]</span>; <span class="k">then </span>sudo gem install rouge; <span class="k">fi
- </span>dev@srv:~/<span class="nv">$ </span>bundle install</code></pre></div> <p>Before editing the <code>_config.yml</code> file to read as follows:</p> <div class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="na">source</span><span class="pi">:</span> <span class="s">.</span>
+<span class="k">end</span></code></pre></div> <p>I then ran:</p> <div class="highlight"><pre><code class="language-shellscript" data-lang="shellscript">dev@srv:~/$ if [[ $(gem query -i -d -l rouge) == "false" ]]; then sudo gem install rouge; fi
+dev@srv:~/$ bundle install</code></pre></div> <p>Before editing the <code>_config.yml</code> file to read as follows:</p> <div class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="na">source</span><span class="pi">:</span> <span class="s">.</span>
 <span class="na">destination</span><span class="pi">:</span> <span class="s">_site</span>
 <span class="na">sass</span><span class="pi">:</span>
   <span class="na">sass_dir</span><span class="pi">:</span> <span class="s">_sass</span>
@@ -16,15 +16,15 @@
 <span class="c1"># permalink and highlighter</span>
 <span class="na">permalink   </span><span class="pi">:</span> <span class="s">/:year/:title/</span>
 <span class="na">markdown    </span><span class="pi">:</span> <span class="s">kramdown</span>
-<span class="na">highlighter </span><span class="pi">:</span> <span class="s">rouge</span></code></pre></div> <p>Finally, with all this changed - we can re-deploy the site:</p> <div class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="gp">dev@srv:~/$ </span>bundle <span class="nb">exec </span>jekyll build
- dev@srv:~/<span class="nv">$ HTML_FOLDER</span><span class="o">=</span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>/_site/
- dev@srv:~/<span class="nv">$ </span>git config --global user.email <span class="s2">"name@example.com"</span>
- dev@srv:~/<span class="nv">$ </span>git config --global user.name <span class="s2">"Exemplar II"</span>
- dev@srv:~/<span class="nv">$ </span><span class="k">if</span> <span class="o">[[</span> <span class="s2">"</span><span class="k">$(</span>git remote<span class="k">)</span><span class="s2">"</span> !<span class="o">=</span> <span class="s2">"origin"</span> <span class="o">]]</span>; <span class="k">then </span>git remote add origin git@github.com:<span class="k">${</span><span class="nv">github_username</span><span class="k">}</span>/<span class="k">${</span><span class="nv">github_username</span><span class="k">}</span>.github.io.git; <span class="k">fi
- </span>dev@srv:~/<span class="nv">$ </span>git init
- dev@srv:~/<span class="nv">$ </span>git add --all
- dev@srv:~/<span class="nv">$ </span>git commit -m <span class="s2">"Deploy Jekyll to GitHub Pages @ (</span><span class="k">$(</span>date<span class="k">)</span><span class="s2">)"</span>
- dev@srv:~/<span class="nv">$ </span>git push origin master</code></pre></div> <p>Apparently, “Jekyll also offers powerful support for code snippets”, lets see:</p> <div class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="na">highlighter </span><span class="pi">:</span> <span class="s">rouge</span></code></pre></div> <p>Finally, with all this changed - we can re-deploy the site:</p> <div class="highlight"><pre><code class="language-shellscript" data-lang="shellscript">dev@srv:~/$ bundle exec jekyll build
+dev@srv:~/$ HTML_FOLDER=$(pwd)/_site/
+dev@srv:~/$ git config --global user.email "name@example.com"
+dev@srv:~/$ git config --global user.name "Exemplar II"
+dev@srv:~/$ if [[ "$(git remote)" != "origin" ]]; then git remote add origin git@github.com:${github_username}/${github_username}.github.io.git; fi
+dev@srv:~/$ git init
+dev@srv:~/$ git add --all
+dev@srv:~/$ git commit -m "Deploy Jekyll to GitHub Pages @ ($(date))"
+dev@srv:~/$ git push origin master</code></pre></div> <p>Apparently, “Jekyll also offers powerful support for code snippets”, lets see:</p> <div class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
 <span class="kn">import</span> <span class="nn">random</span> <span class="k">as</span> <span class="n">rnd</span>
 
 <span class="k">class</span> <span class="nc">G</span><span class="p">():</span>
