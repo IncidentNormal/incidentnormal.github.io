@@ -429,7 +429,7 @@ th {
   src: url("../fonts/ProximaNova-Semibold-523b93c5938637c5dfdcbde51c0ea43d.eot?") format("embedded-opentype"), url("../fonts/ProximaNova-Semibold-59ec19cde74dec0b7a1ea46ce775811b.woff") format("woff"), url("../fonts/ProximaNova-Semibold-34c88b3bc9fce5aa4e9b328edf5716e0.ttf") format("truetype"), url("../fonts/ProximaNova-Semibold-6d67e36a9e19cc4fe60195bddc332634.svg") format("svg");
 }
 body {
-  color: #404040;
+  color: #141414;
   font-family: "Proxima Nova", Arial, sans-serif;
   font-feature-settings: "kern", "liga", "pnum";
   font-size: 1rem;
@@ -581,7 +581,7 @@ body.home-intro .intro {
   font-size: 2.6rem;
   margin: 0 0 20px;
   color: #fff;
-  font-weight: 300;
+  font-weight: 400;
 }
 @media screen and (min-width: 768px) {
   .intro-title,
@@ -840,7 +840,7 @@ body.home-intro .intro {
   font-size: 1.4rem;
   text-decoration: none;
   color: rgba(255, 255, 255, 0.5);
-  font-weight: 300;
+  font-weight: 400;
   display: inline-block;
 }
 .navbar .primary-nav a.selected {
@@ -888,12 +888,12 @@ body.navigation-is-open .menu-burger {
 
 .post-title,
 .post-meta {
-  font-weight: 300;
+  font-weight: 400;
 }
 .post-title a,
 .post-meta a {
   text-decoration: none;
-  color: #404040;
+  color: #141414;
 }
 .post-title a:after,
 .post-meta a:after {
@@ -1226,7 +1226,7 @@ body.navigation-is-open .menu-burger {
 }
 .site-footer p {
   margin-bottom: 0;
-  color: #737373;
+  color: #404040;
   float: left;
 }
 .site-footer .social {
