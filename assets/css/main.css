@@ -812,12 +812,29 @@ body.home-intro .intro {
   -moz-transition-timing-function: cubic-bezier(0.82, 0.01, 0.77, 0.78);
   transition-timing-function: cubic-bezier(0.82, 0.01, 0.77, 0.78);
 }
+.navbar h1 {
+  position: fixed;
+  left: 2%;
+  top: 2%;
+  margin-bottom: 1em;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #e6f2fc;
+}
+.navbar h1::after {
+  content: '';
+  position: absolute;
+  left: 2%;
+  top: 2%;
+  margin-bottom: 1em;
+  background-color: currentColor;
+}
 .navbar h2 {
   position: relative;
   margin-bottom: 1.7em;
   font-size: 1.3rem;
   font-weight: 800;
-  color: #3b34b5;
+  color: #5650cd;
   text-transform: uppercase;
 }
 .navbar h2::after {
