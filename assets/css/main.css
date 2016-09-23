@@ -1248,7 +1248,7 @@ body.navigation-is-open .menu-burger {
   background-color: #e6f2fc;
 }
 .site-footer p {
-  margin-bottom: 0;
+  margin-bottom: 5px;
   color: #141414;
   float: left;
 }
@@ -1259,6 +1259,7 @@ body.navigation-is-open .menu-burger {
 .social li {
   display: inline-block;
   margin-left: 5px;
+  margin-bottom: 5px;
 }
 .social a {
   -webkit-transition: opacity 0.15s ease-in-out;
