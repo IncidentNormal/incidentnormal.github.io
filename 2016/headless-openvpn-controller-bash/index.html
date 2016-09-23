@@ -11,15 +11,16 @@
 <span class="nv">DEBUG_LOG_FILE_PATH</span><span class="o">=</span><span class="s2">"</span><span class="nv">$HOME</span><span class="s2">/.iplogcrondebug.log"</span>
 <span class="nv">GEOLOC_LOG_FILE_PATH</span><span class="o">=</span><span class="s2">"</span><span class="nv">$HOME</span><span class="s2">/.gloc.log"</span>
 <span class="nv">LAST_NATURAL_IP_FILE</span><span class="o">=</span><span class="s2">"</span><span class="nv">$HOME</span><span class="s2">/.last_known_natural_ip"</span>
-<span class="k">if</span> <span class="o">[</span> -f <span class="s2">"</span><span class="nv">$LAST_NATURAL_IP_FILE</span><span class="s2">"</span> <span class="o">]</span>; <span class="k">then </span><span class="nv">SXIP</span><span class="o">=</span><span class="k">$(</span>cat <span class="nv">$LAST_NATURAL_IP_FILE</span><span class="k">)</span> <span class="o">&amp;&amp;</span> <span class="nb">export </span>SXIP; <span class="k">fi
+<span class="k">if</span> <span class="o">[</span> -f <span class="s2">"</span><span class="nv">$LAST_NATURAL_IP_FILE</span><span class="s2">"</span> <span class="o">]</span>; <span class="k">then </span><span class="nv">SXIP</span><span class="o">=</span><span class="k">$(</span>cat <span class="nv">$LAST_NATURAL_IP_FILE</span><span class="k">)</span> <span class="o">&amp;&amp;</span> <span class="nb">export </span>SXIP; <span class="k">fi</span>;
 
-</span><span class="nv">TRDAEMON</span><span class="o">=</span><span class="s2">"transmission-daemon"</span>
+<span class="nv">TRDAEMON</span><span class="o">=</span><span class="s2">"transmission-daemon"</span>
 <span class="nv">TRDAEMONBIN</span><span class="o">=</span>/usr/bin/<span class="k">${</span><span class="nv">TRDAEMON</span><span class="k">}</span>
 <span class="nv">TRUSER</span><span class="o">=</span>debian-transmission
 
 <span class="nv">VPNLIST</span><span class="o">=(</span> france germany sweden switzerland luxembourg finland nl1 nl2 nl3 italy lithuania poland portugal romania spain coventry london portsmouth <span class="o">)</span>
 
-<span class="k">if</span> <span class="o">[</span> -z <span class="nv">$CURRENT_VPN_INDEX</span> <span class="o">]</span>; <span class="k">then
+<span class="k">if</span> <span class="o">[</span> -z <span class="nv">$CURRENT_VPN_INDEX</span> <span class="o">]</span>
+<span class="k">then
     if</span> <span class="o">[</span> -f <span class="s2">"</span><span class="nv">$VPN_MAIN_CONF_FILE_PATH</span><span class="s2">"</span> <span class="o">]</span>; <span class="k">then
 
         </span><span class="nv">current_vpn_target_path</span><span class="o">=</span><span class="k">$(</span>readlink <span class="s2">"</span><span class="nv">$VPN_MAIN_CONF_FILE_PATH</span><span class="s2">"</span><span class="k">)</span>
@@ -27,11 +28,13 @@
         <span class="nv">current_vpn_name</span><span class="o">=</span><span class="s2">"</span><span class="k">${</span><span class="nv">current_vpn_file</span><span class="p">%.ovpn</span><span class="k">}</span><span class="s2">"</span>
         <span class="nv">arr_count</span><span class="o">=</span>0
 
-        <span class="k">for </span>vpn_entry <span class="k">in</span> <span class="s2">"</span><span class="k">${</span><span class="nv">VPNLIST</span><span class="p">[@]</span><span class="k">}</span><span class="s2">"</span>; <span class="k">do
+        <span class="k">for </span>vpn_entry <span class="k">in</span> <span class="s2">"</span><span class="k">${</span><span class="nv">VPNLIST</span><span class="p">[@]</span><span class="k">}</span><span class="s2">"</span>
+        <span class="k">do
 
-            if</span> <span class="o">[</span> <span class="s2">"</span><span class="k">${</span><span class="nv">vpn_entry</span><span class="k">}</span><span class="s2">"</span> <span class="o">==</span> <span class="s2">"</span><span class="k">${</span><span class="nv">current_vpn_name</span><span class="k">}</span><span class="s2">"</span> <span class="o">]</span>; <span class="k">then
-                </span><span class="nv">CURRENT_VPN_INDEX</span><span class="o">=</span><span class="nv">$arr_count</span> ; <span class="nb">export </span>CURRENT_VPN_INDEX
-                <span class="nv">CURRENT_VPN_NAME</span><span class="o">=</span><span class="s2">"</span><span class="k">${</span><span class="nv">VPNLIST</span><span class="p">[</span><span class="nv">$CURRENT_VPN_INDEX</span><span class="p">]</span><span class="k">}</span><span class="s2">"</span> ; <span class="nb">export </span>CURRENT_VPN_NAME
+            if</span> <span class="o">[</span> <span class="s2">"</span><span class="k">${</span><span class="nv">vpn_entry</span><span class="k">}</span><span class="s2">"</span> <span class="o">==</span> <span class="s2">"</span><span class="k">${</span><span class="nv">current_vpn_name</span><span class="k">}</span><span class="s2">"</span> <span class="o">]</span>
+            <span class="k">then
+                </span><span class="nv">CURRENT_VPN_INDEX</span><span class="o">=</span><span class="nv">$arr_count</span> ; <span class="nb">export </span>CURRENT_VPN_INDEX;
+                <span class="nv">CURRENT_VPN_NAME</span><span class="o">=</span><span class="s2">"</span><span class="k">${</span><span class="nv">VPNLIST</span><span class="p">[</span><span class="nv">$CURRENT_VPN_INDEX</span><span class="p">]</span><span class="k">}</span><span class="s2">"</span> ; <span class="nb">export </span>CURRENT_VPN_NAME;
             <span class="k">else
                 </span><span class="nv">arr_count</span><span class="o">=</span><span class="s2">"</span><span class="k">$((</span> <span class="o">++</span>arr_count <span class="k">))</span><span class="s2">"</span>
             <span class="k">fi
@@ -39,37 +42,39 @@
         done
 
     else
-        </span><span class="nv">CURRENT_VPN_INDEX</span><span class="o">=</span>0 ; <span class="nb">export </span>CURRENT_VPN_INDEX
-        <span class="nv">CURRENT_VPN_NAME</span><span class="o">=</span><span class="s2">""</span> ; <span class="nb">export </span>CURRENT_VPN_NAME
-    <span class="k">fi
-fi
+        </span><span class="nv">CURRENT_VPN_INDEX</span><span class="o">=</span>0 ; <span class="nb">export </span>CURRENT_VPN_INDEX;
+        <span class="nv">CURRENT_VPN_NAME</span><span class="o">=</span><span class="s2">""</span> ; <span class="nb">export </span>CURRENT_VPN_NAME;
+    <span class="k">fi</span>;
+<span class="k">fi</span>;
 
 
-function </span>getExtIp <span class="o">{</span>
+<span class="k">function </span>getExtIp <span class="o">{</span>
     <span class="nb">echo</span> <span class="s2">"</span><span class="k">$(</span>curl -s icanhazip.com<span class="k">)</span><span class="s2">"</span>
 <span class="o">}</span>
 
 <span class="k">function </span>storeNaturalExtIpInFile <span class="o">{</span>
 
     <span class="nv">naturalExtIp</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span>getNaturalExtIp<span class="k">)</span><span class="s2">"</span>
-    <span class="k">if</span> <span class="o">[</span> <span class="s2">"</span><span class="nv">$?</span><span class="s2">"</span> -eq 0 <span class="o">]</span>; <span class="k">then
-        </span><span class="nb">echo</span> <span class="s2">"</span><span class="nv">$naturalExtIp</span><span class="s2">"</span> &gt; <span class="nv">$LAST_NATURAL_IP_FILE</span>
-        <span class="k">return </span>0
+    <span class="k">if</span> <span class="o">[</span> <span class="s2">"</span><span class="nv">$?</span><span class="s2">"</span> -eq 0 <span class="o">]</span>
+    <span class="k">then
+        </span><span class="nb">echo</span> <span class="s2">"</span><span class="nv">$naturalExtIp</span><span class="s2">"</span> &gt; <span class="nv">$LAST_NATURAL_IP_FILE</span>;
+        <span class="k">return </span>0;
     <span class="k">else
-        return </span>1
-    <span class="k">fi</span>
+        return </span>1;
+    <span class="k">fi</span>;
 <span class="o">}</span>
 
 <span class="k">function </span>getNaturalExtIp <span class="o">{</span>
 
     <span class="nv">naturalExtIp</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span>ssh other@machine.on.your.network curl -s icanhazip.com<span class="k">)</span><span class="s2">"</span>
 
-    <span class="k">if</span> <span class="k">$(</span>testArgumentIsIPv4Address <span class="s2">"</span><span class="nv">$naturalExtIp</span><span class="s2">"</span><span class="k">)</span>; <span class="k">then
+    <span class="k">if</span> <span class="k">$(</span>testArgumentIsIPv4Address <span class="s2">"</span><span class="nv">$naturalExtIp</span><span class="s2">"</span><span class="k">)</span>
+    <span class="k">then
         </span><span class="nb">echo</span> <span class="s2">"</span><span class="nv">$naturalExtIp</span><span class="s2">"</span>
-        <span class="k">return </span>0
+        <span class="k">return </span>0;
     <span class="k">else
-        return </span>1
-    <span class="k">fi</span>
+        return </span>1;
+    <span class="k">fi</span>;
 <span class="o">}</span>
 
 <span class="k">function </span>iplogcron <span class="o">{</span>
@@ -78,64 +83,65 @@ function </span>getExtIp <span class="o">{</span>
 
     storeNaturalExtIpInFile
     <span class="nv">SXIP</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span>cat <span class="nv">$LAST_NATURAL_IP_FILE</span><span class="k">)</span><span class="s2">"</span>
-    <span class="k">if</span> <span class="o">[</span> -n <span class="s2">"</span><span class="nv">$SXIP</span><span class="s2">"</span> <span class="o">]</span>; <span class="k">then
-        </span><span class="nb">export </span>SXIP
-    <span class="k">fi
+    <span class="k">if</span> <span class="o">[</span> -n <span class="s2">"</span><span class="nv">$SXIP</span><span class="s2">"</span> <span class="o">]</span>
+    <span class="k">then
+        </span><span class="nb">export </span>SXIP;
+    <span class="k">fi</span>;
 
-    </span><span class="nb">echo</span> -e <span class="s2">"</span><span class="k">$(</span>date<span class="k">)</span><span class="s2"> ::</span><span class="se">\t</span><span class="s2"> </span><span class="k">${</span><span class="nv">ipnow</span><span class="k">}</span><span class="s2"> ::</span><span class="se">\t</span><span class="s2"> Natural IP:[</span><span class="k">${</span><span class="nv">SXIP</span><span class="k">}</span><span class="s2">]"</span> &gt;&gt; <span class="s2">"</span><span class="k">${</span><span class="nv">IPLOG_PATH</span><span class="k">}</span><span class="s2">"</span>
+    <span class="nb">echo</span> -e <span class="s2">"</span><span class="k">$(</span>date<span class="k">)</span><span class="s2"> ::</span><span class="se">\t</span><span class="s2"> </span><span class="k">${</span><span class="nv">ipnow</span><span class="k">}</span><span class="s2"> ::</span><span class="se">\t</span><span class="s2"> Natural IP:[</span><span class="k">${</span><span class="nv">SXIP</span><span class="k">}</span><span class="s2">]"</span> &gt;&gt; <span class="s2">"</span><span class="k">${</span><span class="nv">IPLOG_PATH</span><span class="k">}</span><span class="s2">"</span>;
 
-    <span class="k">if</span> <span class="o">[</span> <span class="k">$(</span>chkvpnargs <span class="k">${</span><span class="nv">ipnow</span><span class="k">})</span> -ne 0 <span class="o">]</span>; <span class="k">then
+    <span class="k">if</span> <span class="o">[</span> <span class="k">$(</span>chkvpnargs <span class="k">${</span><span class="nv">ipnow</span><span class="k">})</span> -ne 0 <span class="o">]</span>
+    <span class="k">then
+        </span><span class="nv">vpnDownMsg</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span> <span class="s2">"VPN DOWN:</span><span class="se">\t</span><span class="s2"> IP=</span><span class="k">${</span><span class="nv">ipnow</span><span class="k">}</span><span class="s2"> </span><span class="se">\t</span><span class="s2"> VPN_INDEX=</span><span class="k">${</span><span class="nv">CURRENT_VPN_INDEX</span><span class="k">}</span><span class="s2"> </span><span class="se">\t</span><span class="s2"> VPN_NAME=</span><span class="k">${</span><span class="nv">VPNLIST</span><span class="p">[</span><span class="nv">$CURRENT_VPN_INDEX</span><span class="p">]</span><span class="k">}</span><span class="s2">"</span><span class="k">)</span>;
+        <span class="nb">echo</span> -e <span class="s2">"</span><span class="nv">$vpnDownMsg</span><span class="s2">"</span> &gt;&gt; <span class="s2">"</span><span class="nv">$DEBUG_LOG_FILE_PATH</span><span class="s2">"</span>;
+        <span class="nb">echo</span> -e <span class="s2">"</span><span class="nv">$vpnDownMsg</span><span class="s2">"</span>;
 
-        </span><span class="nv">vpnDownMsg</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span> <span class="s2">"VPN DOWN:</span><span class="se">\t</span><span class="s2"> IP=</span><span class="k">${</span><span class="nv">ipnow</span><span class="k">}</span><span class="s2"> </span><span class="se">\t</span><span class="s2"> VPN_INDEX=</span><span class="k">${</span><span class="nv">CURRENT_VPN_INDEX</span><span class="k">}</span><span class="s2"> </span><span class="se">\t</span><span class="s2"> VPN_NAME=</span><span class="k">${</span><span class="nv">VPNLIST</span><span class="p">[</span><span class="nv">$CURRENT_VPN_INDEX</span><span class="p">]</span><span class="k">}</span><span class="s2">"</span><span class="k">)</span>
-        <span class="nb">echo</span> -e <span class="s2">"</span><span class="nv">$vpnDownMsg</span><span class="s2">"</span> &gt;&gt; <span class="s2">"</span><span class="nv">$DEBUG_LOG_FILE_PATH</span><span class="s2">"</span>
-        <span class="nb">echo</span> -e <span class="s2">"</span><span class="nv">$vpnDownMsg</span><span class="s2">"</span>
-
-        forceSwitchVpnConnection
-
+        forceSwitchVpnConnection;
     <span class="k">else
-
-        </span><span class="nv">vpnOkMsg</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span> <span class="s2">"VPN OK:</span><span class="se">\t</span><span class="s2"> IP=</span><span class="k">${</span><span class="nv">ipnow</span><span class="k">}</span><span class="s2"> </span><span class="se">\t</span><span class="s2"> VPN_INDEX=</span><span class="k">${</span><span class="nv">CURRENT_VPN_INDEX</span><span class="k">}</span><span class="s2"> </span><span class="se">\t</span><span class="s2"> VPN_NAME=</span><span class="k">${</span><span class="nv">VPNLIST</span><span class="p">[</span><span class="nv">$CURRENT_VPN_INDEX</span><span class="p">]</span><span class="k">}</span><span class="s2">"</span><span class="k">)</span>
-        <span class="nb">echo</span> -e <span class="s2">"</span><span class="nv">$vpnOkMsg</span><span class="s2">"</span>
-
-    <span class="k">fi</span>
+        </span><span class="nv">vpnOkMsg</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span> <span class="s2">"VPN OK:</span><span class="se">\t</span><span class="s2"> IP=</span><span class="k">${</span><span class="nv">ipnow</span><span class="k">}</span><span class="s2"> </span><span class="se">\t</span><span class="s2"> VPN_INDEX=</span><span class="k">${</span><span class="nv">CURRENT_VPN_INDEX</span><span class="k">}</span><span class="s2"> </span><span class="se">\t</span><span class="s2"> VPN_NAME=</span><span class="k">${</span><span class="nv">VPNLIST</span><span class="p">[</span><span class="nv">$CURRENT_VPN_INDEX</span><span class="p">]</span><span class="k">}</span><span class="s2">"</span><span class="k">)</span>;
+        <span class="nb">echo</span> -e <span class="s2">"</span><span class="nv">$vpnOkMsg</span><span class="s2">"</span>;
+    <span class="k">fi</span>;
 <span class="o">}</span>
 
 <span class="k">function </span>parseForceSwitchArgs <span class="o">{</span>
 
     <span class="nb">local </span>changeIndex
 
-    <span class="k">if</span> <span class="o">[</span> <span class="s2">"$#"</span> -eq 1 <span class="o">]</span>; <span class="k">then
+    <span class="k">if</span> <span class="o">[</span> <span class="s2">"$#"</span> -eq 1 <span class="o">]</span>
+    <span class="k">then
 
-        if</span> <span class="o">[</span> <span class="k">$(</span>testArgumentIsNumeric <span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span><span class="k">)</span> <span class="o">]</span>; <span class="k">then
-            </span><span class="nv">changeIndex</span><span class="o">=</span><span class="nv">$1</span>
+        if</span> <span class="o">[</span> <span class="k">$(</span>testArgumentIsNumeric <span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span><span class="k">)</span> <span class="o">]</span>
+        <span class="k">then
+            </span><span class="nv">changeIndex</span><span class="o">=</span><span class="nv">$1</span>;
         <span class="k">else
             </span><span class="nv">inputArg</span><span class="o">=</span><span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span>
             <span class="nv">CLEANSTRING</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span>sanitizeArgument <span class="k">${</span><span class="nv">inputArg</span><span class="k">})</span><span class="s2">"</span>
             <span class="nv">element_index</span><span class="o">=</span><span class="k">$(</span>getElementIndex <span class="s2">"</span><span class="nv">$CLEANSTRING</span><span class="s2">"</span> <span class="s2">"</span><span class="k">${</span><span class="nv">VPNLIST</span><span class="p">[@]</span><span class="k">}</span><span class="s2">"</span><span class="k">)</span>
 
-            <span class="k">if</span> <span class="o">[</span> <span class="s2">"</span><span class="nv">$?</span><span class="s2">"</span> -eq 0 <span class="o">]</span>; <span class="k">then
-                </span><span class="nv">changeIndex</span><span class="o">=</span><span class="s2">"</span><span class="nv">$element_index</span><span class="s2">"</span>
+            <span class="k">if</span> <span class="o">[</span> <span class="s2">"</span><span class="nv">$?</span><span class="s2">"</span> -eq 0 <span class="o">]</span>
+            <span class="k">then
+                </span><span class="nv">changeIndex</span><span class="o">=</span><span class="s2">"</span><span class="nv">$element_index</span><span class="s2">"</span>;
             <span class="k">else
-                </span><span class="nb">echo</span> <span class="s2">" &gt; &gt; &gt; INPUT [</span><span class="nv">$CLEANSTRING</span><span class="s2">] INVALID CHOICE :: Choose value from [</span><span class="k">${</span><span class="nv">VPNLIST</span><span class="p">[@]</span><span class="k">}</span><span class="s2">] &lt; &lt; &lt;"</span>
-                <span class="k">return </span>1
-            <span class="k">fi
-        fi
+                </span><span class="nb">echo</span> <span class="s2">" &gt; &gt; &gt; INPUT [</span><span class="nv">$CLEANSTRING</span><span class="s2">] INVALID CHOICE :: Choose value from [</span><span class="k">${</span><span class="nv">VPNLIST</span><span class="p">[@]</span><span class="k">}</span><span class="s2">] &lt; &lt; &lt;"</span>;
+                <span class="k">return </span>1;
+            <span class="k">fi</span>;
+        <span class="k">fi</span>;
 
-        if</span> <span class="o">[</span> -n <span class="s2">"</span><span class="nv">$changeIndex</span><span class="s2">"</span> <span class="o">]</span>; <span class="k">then
-
+        <span class="k">if</span> <span class="o">[</span> -n <span class="s2">"</span><span class="nv">$changeIndex</span><span class="s2">"</span> <span class="o">]</span>
+        <span class="k">then
             if</span> <span class="o">[</span> <span class="s2">"</span><span class="nv">$changeIndex</span><span class="s2">"</span> -eq 0 <span class="o">]</span>; <span class="k">then
-                </span><span class="nv">CURRENT_VPN_INDEX</span><span class="o">=</span><span class="s2">"</span><span class="k">$((</span> <span class="k">${#</span><span class="nv">VPNLIST</span><span class="p">[@]</span><span class="k">}</span> <span class="o">-</span> <span class="m">1</span> <span class="k">))</span><span class="s2">"</span> ; <span class="nb">export </span>CURRENT_VPN_INDEX ; <span class="nb">echo</span> <span class="s2">" &gt; &gt; &gt; CHANGING VPN TO [</span><span class="k">${</span><span class="nv">VPNLIST</span><span class="p">[</span><span class="nv">$changeIndex</span><span class="p">]</span><span class="k">}</span><span class="s2">] :: index [</span><span class="nv">$changeIndex</span><span class="s2">] &gt; &gt; &gt;"</span>
-            <span class="k">elif</span> <span class="o">[</span> <span class="s2">"</span><span class="nv">$changeIndex</span><span class="s2">"</span> -lt <span class="s2">"</span><span class="k">${#</span><span class="nv">VPNLIST</span><span class="p">[@]</span><span class="k">}</span><span class="s2">"</span> <span class="o">]</span>; <span class="k">then
-                </span><span class="nv">CURRENT_VPN_INDEX</span><span class="o">=</span><span class="s2">"</span><span class="k">$((</span> <span class="nv">$changeIndex</span> <span class="o">-</span> <span class="m">1</span> <span class="k">))</span><span class="s2">"</span> ; <span class="nb">export </span>CURRENT_VPN_INDEX ; <span class="nb">echo</span> <span class="s2">" &gt; &gt; &gt; CHANGING VPN TO [</span><span class="k">${</span><span class="nv">VPNLIST</span><span class="p">[</span><span class="nv">$changeIndex</span><span class="p">]</span><span class="k">}</span><span class="s2">] :: index [</span><span class="nv">$changeIndex</span><span class="s2">] &gt; &gt; &gt;"</span>
+                </span><span class="nv">CURRENT_VPN_INDEX</span><span class="o">=</span><span class="s2">"</span><span class="k">$((</span> <span class="k">${#</span><span class="nv">VPNLIST</span><span class="p">[@]</span><span class="k">}</span> <span class="o">-</span> <span class="m">1</span> <span class="k">))</span><span class="s2">"</span> ; <span class="nb">export </span>CURRENT_VPN_INDEX ; <span class="nb">echo</span> <span class="s2">" &gt; &gt; &gt; CHANGING VPN TO [</span><span class="k">${</span><span class="nv">VPNLIST</span><span class="p">[</span><span class="nv">$changeIndex</span><span class="p">]</span><span class="k">}</span><span class="s2">] :: index [</span><span class="nv">$changeIndex</span><span class="s2">] &gt; &gt; &gt;"</span>;
+            <span class="k">elif</span> <span class="o">[</span> <span class="s2">"</span><span class="nv">$changeIndex</span><span class="s2">"</span> -lt <span class="s2">"</span><span class="k">${#</span><span class="nv">VPNLIST</span><span class="p">[@]</span><span class="k">}</span><span class="s2">"</span> <span class="o">]</span>
+            <span class="k">then
+                </span><span class="nv">CURRENT_VPN_INDEX</span><span class="o">=</span><span class="s2">"</span><span class="k">$((</span> <span class="nv">$changeIndex</span> <span class="o">-</span> <span class="m">1</span> <span class="k">))</span><span class="s2">"</span> ; <span class="nb">export </span>CURRENT_VPN_INDEX ; <span class="nb">echo</span> <span class="s2">" &gt; &gt; &gt; CHANGING VPN TO [</span><span class="k">${</span><span class="nv">VPNLIST</span><span class="p">[</span><span class="nv">$changeIndex</span><span class="p">]</span><span class="k">}</span><span class="s2">] :: index [</span><span class="nv">$changeIndex</span><span class="s2">] &gt; &gt; &gt;"</span>;
             <span class="k">else
-                </span><span class="nb">echo</span> <span class="s2">" &gt; &gt; &gt; INDEX [</span><span class="nv">$changeIndex</span><span class="s2">] OUT OF RANGE :: CHOOSE VALUE FROM 0 TO </span><span class="k">$((</span> <span class="k">${#</span><span class="nv">VPNLIST</span><span class="p">[@]</span><span class="k">}</span> <span class="o">-</span> <span class="m">1</span> <span class="k">))</span><span class="s2"> &lt; &lt; &lt;"</span>
-                <span class="k">return </span>1
-            <span class="k">fi
+                </span><span class="nb">echo</span> <span class="s2">" &gt; &gt; &gt; INDEX [</span><span class="nv">$changeIndex</span><span class="s2">] OUT OF RANGE :: CHOOSE VALUE FROM 0 TO </span><span class="k">$((</span> <span class="k">${#</span><span class="nv">VPNLIST</span><span class="p">[@]</span><span class="k">}</span> <span class="o">-</span> <span class="m">1</span> <span class="k">))</span><span class="s2"> &lt; &lt; &lt;"</span>;
+                <span class="k">return </span>1;
+            <span class="k">fi</span>;
+        <span class="k">fi</span>;
+    <span class="k">fi</span>;
 
-        fi
-    fi
-
-    return </span>0
+    <span class="k">return </span>0;
 
 <span class="o">}</span>
 
@@ -145,45 +151,49 @@ function </span>getExtIp <span class="o">{</span>
     <span class="nb">local </span>calledByUser
     <span class="nb">local </span><span class="nv">calledStateCode</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span>ps -o <span class="nv">stat</span><span class="o">=</span> -p <span class="nv">$$</span><span class="k">)</span><span class="s2">"</span> &amp;&gt;/dev/null
 
-    <span class="k">if</span> <span class="o">[[</span> <span class="s2">"</span><span class="nv">$calledStateCode</span><span class="s2">"</span> <span class="o">=</span>~ .<span class="k">*</span><span class="se">\+</span> <span class="o">]]</span> <span class="o">&amp;&amp;</span> <span class="o">[</span> <span class="s2">"</span><span class="nv">$numArgs</span><span class="s2">"</span> -eq 0 <span class="o">]</span>; <span class="k">then
-        </span><span class="nv">calledByUser</span><span class="o">=</span><span class="s2">"true"</span>
-        <span class="nb">local </span>nextVpnIndex
+    <span class="k">if</span> <span class="o">[[</span> <span class="s2">"</span><span class="nv">$calledStateCode</span><span class="s2">"</span> <span class="o">=</span>~ .<span class="k">*</span><span class="se">\+</span> <span class="o">]]</span> <span class="o">&amp;&amp;</span> <span class="o">[</span> <span class="s2">"</span><span class="nv">$numArgs</span><span class="s2">"</span> -eq 0 <span class="o">]</span>
+    <span class="k">then
+        </span><span class="nv">calledByUser</span><span class="o">=</span><span class="s2">"true"</span>;
+        <span class="nb">local </span>nextVpnIndex;
 
-        <span class="o">[[</span> <span class="nv">$CURRENT_VPN_INDEX</span> -ne <span class="k">$((</span> <span class="k">${#</span><span class="nv">VPNLIST</span><span class="p">[@]</span><span class="k">}</span> <span class="o">-</span> <span class="m">1</span> <span class="k">))</span> <span class="o">]]</span> <span class="o">&amp;&amp;</span> <span class="nv">nextVpnIndex</span><span class="o">=</span><span class="k">$((</span> <span class="nv">$CURRENT_VPN_INDEX</span> <span class="o">+</span> <span class="m">1</span> <span class="k">))</span> <span class="o">||</span> <span class="nv">nextVpnIndex</span><span class="o">=</span>0
+        <span class="o">[[</span> <span class="nv">$CURRENT_VPN_INDEX</span> -ne <span class="k">$((</span> <span class="k">${#</span><span class="nv">VPNLIST</span><span class="p">[@]</span><span class="k">}</span> <span class="o">-</span> <span class="m">1</span> <span class="k">))</span> <span class="o">]]</span> <span class="o">&amp;&amp;</span> <span class="nv">nextVpnIndex</span><span class="o">=</span><span class="k">$((</span> <span class="nv">$CURRENT_VPN_INDEX</span> <span class="o">+</span> <span class="m">1</span> <span class="k">))</span> <span class="o">||</span> <span class="nv">nextVpnIndex</span><span class="o">=</span>0;
 
-        <span class="nb">echo</span> <span class="s2">" &gt; &gt; &gt; CHANGING VPN TO [</span><span class="k">${</span><span class="nv">VPNLIST</span><span class="p">[</span><span class="nv">$nextVpnIndex</span><span class="p">]</span><span class="k">}</span><span class="s2">] :: index [</span><span class="nv">$nextVpnIndex</span><span class="s2">] &gt; &gt; &gt;"</span>
-    <span class="k">fi
+        <span class="nb">echo</span> <span class="s2">" &gt; &gt; &gt; CHANGING VPN TO [</span><span class="k">${</span><span class="nv">VPNLIST</span><span class="p">[</span><span class="nv">$nextVpnIndex</span><span class="p">]</span><span class="k">}</span><span class="s2">] :: index [</span><span class="nv">$nextVpnIndex</span><span class="s2">] &gt; &gt; &gt;"</span>;
+    <span class="k">fi</span>;
 
-    if</span> <span class="o">[</span> -n <span class="s2">"</span><span class="nv">$numArgs</span><span class="s2">"</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="o">[</span> <span class="s2">"</span><span class="nv">$numArgs</span><span class="s2">"</span> -gt 0 <span class="o">]</span>; <span class="k">then
+    <span class="k">if</span> <span class="o">[</span> -n <span class="s2">"</span><span class="nv">$numArgs</span><span class="s2">"</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="o">[</span> <span class="s2">"</span><span class="nv">$numArgs</span><span class="s2">"</span> -gt 0 <span class="o">]</span>
+    <span class="k">then
+        </span>parseForceSwitchArgs <span class="nv">$@</span>;
+        <span class="k">if</span> <span class="o">[</span> <span class="nv">$?</span> -ne 0 <span class="o">]</span>
+        <span class="k">then
+            return </span>1;
+        <span class="k">fi</span>;
 
-        </span>parseForceSwitchArgs <span class="nv">$@</span>
-        <span class="k">if</span> <span class="o">[</span> <span class="nv">$?</span> -ne 0 <span class="o">]</span>; <span class="k">then
-            return </span>1
-        <span class="k">fi
+        <span class="nv">calledByUser</span><span class="o">=</span><span class="s2">"true"</span>;
+    <span class="k">fi</span>;
 
-        </span><span class="nv">calledByUser</span><span class="o">=</span><span class="s2">"true"</span>
-    <span class="k">fi
+    <span class="nb">echo</span> -e <span class="s2">"</span><span class="se">\n\n</span><span class="s2">:</span><span class="se">\t</span><span class="s2">:</span><span class="se">\t</span><span class="s2">:</span><span class="se">\t</span><span class="s2">:</span><span class="se">\t</span><span class="s2"> FORCE SWITCH VPN CONNECTION</span><span class="se">\t</span><span class="s2"> :</span><span class="se">\t</span><span class="s2">:</span><span class="se">\t</span><span class="s2">:</span><span class="se">\t</span><span class="s2">:</span><span class="se">\n</span><span class="s2">"</span> &gt;&gt; <span class="s2">"</span><span class="nv">$DEBUG_LOG_FILE_PATH</span><span class="s2">"</span>;
+    <span class="nb">echo</span> <span class="s2">"</span><span class="k">$(</span>date<span class="k">)</span><span class="s2"> :: *** Enter vpnRotateConfig"</span> &gt;&gt; <span class="s2">"</span><span class="nv">$DEBUG_LOG_FILE_PATH</span><span class="s2">"</span>;
 
-    </span><span class="nb">echo</span> -e <span class="s2">"</span><span class="se">\n\n</span><span class="s2">:</span><span class="se">\t</span><span class="s2">:</span><span class="se">\t</span><span class="s2">:</span><span class="se">\t</span><span class="s2">:</span><span class="se">\t</span><span class="s2"> FORCE SWITCH VPN CONNECTION</span><span class="se">\t</span><span class="s2"> :</span><span class="se">\t</span><span class="s2">:</span><span class="se">\t</span><span class="s2">:</span><span class="se">\t</span><span class="s2">:</span><span class="se">\n</span><span class="s2">"</span> &gt;&gt; <span class="s2">"</span><span class="nv">$DEBUG_LOG_FILE_PATH</span><span class="s2">"</span>
-    <span class="nb">echo</span> <span class="s2">"</span><span class="k">$(</span>date<span class="k">)</span><span class="s2"> :: *** Enter vpnRotateConfig"</span> &gt;&gt; <span class="s2">"</span><span class="nv">$DEBUG_LOG_FILE_PATH</span><span class="s2">"</span>
+    vpnRotateConfig;
 
-    vpnRotateConfig
+    <span class="nb">echo</span> <span class="s2">"</span><span class="k">$(</span>date<span class="k">)</span><span class="s2"> :: *** Enter vpnReload"</span> &gt;&gt; <span class="s2">"</span><span class="nv">$DEBUG_LOG_FILE_PATH</span><span class="s2">"</span>;
 
-    <span class="nb">echo</span> <span class="s2">"</span><span class="k">$(</span>date<span class="k">)</span><span class="s2"> :: *** Enter vpnReload"</span> &gt;&gt; <span class="s2">"</span><span class="nv">$DEBUG_LOG_FILE_PATH</span><span class="s2">"</span>
+    <span class="k">if</span> <span class="o">[</span> <span class="s2">"</span><span class="k">$(</span>vpnReload<span class="k">)</span><span class="s2">"</span> <span class="o">=</span> 0 <span class="o">]</span>
+    <span class="k">then
+        </span><span class="nb">echo</span> <span class="s2">"</span><span class="k">$(</span>date<span class="k">)</span><span class="s2"> :: &gt; &gt; &gt; SUCCESS *** vpnReload returned 0, so we can start </span><span class="nv">$TRDAEMON</span><span class="s2"> again"</span> &gt;&gt; <span class="s2">"</span><span class="nv">$DEBUG_LOG_FILE_PATH</span><span class="s2">"</span>;
 
-    <span class="k">if</span> <span class="o">[</span> <span class="s2">"</span><span class="k">$(</span>vpnReload<span class="k">)</span><span class="s2">"</span> <span class="o">=</span> 0 <span class="o">]</span>; <span class="k">then
-        </span><span class="nb">echo</span> <span class="s2">"</span><span class="k">$(</span>date<span class="k">)</span><span class="s2"> :: &gt; &gt; &gt; SUCCESS *** vpnReload returned 0, so we can start </span><span class="nv">$TRDAEMON</span><span class="s2"> again"</span> &gt;&gt; <span class="s2">"</span><span class="nv">$DEBUG_LOG_FILE_PATH</span><span class="s2">"</span>
+        sudo service <span class="s2">"</span><span class="nv">$TRDAEMON</span><span class="s2">"</span> start &gt;&gt; <span class="s2">"</span><span class="nv">$DEBUG_LOG_FILE_PATH</span><span class="s2">"</span> 2&gt;&amp;1;
 
-        sudo service <span class="s2">"</span><span class="nv">$TRDAEMON</span><span class="s2">"</span> start &gt;&gt; <span class="s2">"</span><span class="nv">$DEBUG_LOG_FILE_PATH</span><span class="s2">"</span> 2&gt;&amp;1
+        <span class="nb">local </span><span class="nv">extIp</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span>getExtIp<span class="k">)</span><span class="s2">"</span>;
+        <span class="nv">geoLocMsg</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span> <span class="s2">"New VPN Location: </span><span class="k">$(</span>getGeoLocFromIp <span class="nv">$extIp</span><span class="k">)</span><span class="s2"> :: [IP Address: </span><span class="nv">$extIp</span><span class="s2">]"</span><span class="k">)</span>;
+        <span class="nb">echo</span> <span class="s2">"</span><span class="nv">$geoLocMsg</span><span class="s2">"</span> &gt;&gt; <span class="s2">"</span><span class="nv">$DEBUG_LOG_FILE_PATH</span><span class="s2">"</span>;
 
-        <span class="nb">local </span><span class="nv">extIp</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span>getExtIp<span class="k">)</span><span class="s2">"</span>
-        <span class="nv">geoLocMsg</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span> <span class="s2">"New VPN Location: </span><span class="k">$(</span>getGeoLocFromIp <span class="nv">$extIp</span><span class="k">)</span><span class="s2"> :: [IP Address: </span><span class="nv">$extIp</span><span class="s2">]"</span><span class="k">)</span>
-        <span class="nb">echo</span> <span class="s2">"</span><span class="nv">$geoLocMsg</span><span class="s2">"</span> &gt;&gt; <span class="s2">"</span><span class="nv">$DEBUG_LOG_FILE_PATH</span><span class="s2">"</span>
-
-        <span class="k">if</span> <span class="o">[</span> <span class="s2">"</span><span class="nv">$calledByUser</span><span class="s2">"</span> <span class="o">=</span> <span class="s2">"true"</span> <span class="o">]</span>; <span class="k">then
-            </span><span class="nb">echo</span> <span class="s2">"</span><span class="nv">$geoLocMsg</span><span class="s2">"</span>
-        <span class="k">fi
-    fi</span>
+        <span class="k">if</span> <span class="o">[</span> <span class="s2">"</span><span class="nv">$calledByUser</span><span class="s2">"</span> <span class="o">=</span> <span class="s2">"true"</span> <span class="o">]</span>
+        <span class="k">then
+            </span><span class="nb">echo</span> <span class="s2">"</span><span class="nv">$geoLocMsg</span><span class="s2">"</span>;
+        <span class="k">fi</span>;
+    <span class="k">fi</span>;
 <span class="o">}</span>
 
 <span class="k">function </span>stopTransmissionDaemon <span class="o">{</span>
@@ -191,164 +201,175 @@ function </span>getExtIp <span class="o">{</span>
     <span class="nb">local </span><span class="nv">retval</span><span class="o">=</span>2
     <span class="nb">local </span><span class="nv">counter</span><span class="o">=</span>0
 
-    <span class="k">while</span> <span class="o">[</span> <span class="nv">$retval</span> -gt 1 <span class="o">]</span>; <span class="k">do
+    <span class="k">while</span> <span class="o">[</span> <span class="nv">$retval</span> -gt 1 <span class="o">]</span>
+    <span class="k">do
+        </span><span class="nb">echo</span> <span class="s2">"</span><span class="k">$(</span>date<span class="k">)</span><span class="s2"> :: *** Enter isServiceRunning: </span><span class="nv">$TRDAEMON</span><span class="s2"> ... count = </span><span class="nv">$counter</span><span class="s2">"</span> &gt;&gt; <span class="s2">"</span><span class="nv">$DEBUG_LOG_FILE_PATH</span><span class="s2">"</span>;
+        <span class="nv">result</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span>isServiceRunning <span class="nv">$TRDAEMON</span><span class="k">)</span><span class="s2">"</span>;
 
-        </span><span class="nb">echo</span> <span class="s2">"</span><span class="k">$(</span>date<span class="k">)</span><span class="s2"> :: *** Enter isServiceRunning: </span><span class="nv">$TRDAEMON</span><span class="s2"> ... count = </span><span class="nv">$counter</span><span class="s2">"</span> &gt;&gt; <span class="s2">"</span><span class="nv">$DEBUG_LOG_FILE_PATH</span><span class="s2">"</span>
-        <span class="nv">result</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span>isServiceRunning <span class="nv">$TRDAEMON</span><span class="k">)</span><span class="s2">"</span>
-
-        <span class="k">if</span> <span class="o">[</span> <span class="s2">"</span><span class="nv">$result</span><span class="s2">"</span> <span class="o">=</span> 0 <span class="o">]</span>; <span class="k">then
-            </span><span class="nb">echo</span> <span class="s2">"</span><span class="k">$(</span>date<span class="k">)</span><span class="s2"> :: &gt; &gt; &gt; isServiceRunning returned 0 (not running) - so now we return 0"</span> &gt;&gt; <span class="s2">"</span><span class="nv">$DEBUG_LOG_FILE_PATH</span><span class="s2">"</span>
-            <span class="nv">retval</span><span class="o">=</span>0
-        <span class="k">elif</span> <span class="o">[</span> <span class="nv">$counter</span> -gt 4 <span class="o">]</span>; <span class="k">then
-            </span><span class="nb">echo</span> <span class="s2">"</span><span class="k">$(</span>date<span class="k">)</span><span class="s2"> :: &gt; &gt; &gt; isServiceRunning returned 1 (running) 5 times in a row - so now we return 1"</span> &gt;&gt; <span class="s2">"</span><span class="nv">$DEBUG_LOG_FILE_PATH</span><span class="s2">"</span>
-            <span class="nv">retval</span><span class="o">=</span>1
+        <span class="k">if</span> <span class="o">[</span> <span class="s2">"</span><span class="nv">$result</span><span class="s2">"</span> <span class="o">=</span> 0 <span class="o">]</span>
+        <span class="k">then
+            </span><span class="nb">echo</span> <span class="s2">"</span><span class="k">$(</span>date<span class="k">)</span><span class="s2"> :: &gt; &gt; &gt; isServiceRunning returned 0 (not running) - so now we return 0"</span> &gt;&gt; <span class="s2">"</span><span class="nv">$DEBUG_LOG_FILE_PATH</span><span class="s2">"</span>;
+            <span class="nv">retval</span><span class="o">=</span>0;
+        <span class="k">elif</span> <span class="o">[</span> <span class="nv">$counter</span> -gt 4 <span class="o">]</span>
+        <span class="k">then
+            </span><span class="nb">echo</span> <span class="s2">"</span><span class="k">$(</span>date<span class="k">)</span><span class="s2"> :: &gt; &gt; &gt; isServiceRunning returned 1 (running) 5 times in a row - so now we return 1"</span> &gt;&gt; <span class="s2">"</span><span class="nv">$DEBUG_LOG_FILE_PATH</span><span class="s2">"</span>;
+            <span class="nv">retval</span><span class="o">=</span>1;
         <span class="k">else
-            </span><span class="nb">echo</span> <span class="s2">"</span><span class="k">$(</span>date<span class="k">)</span><span class="s2"> :: &gt; &gt; &gt; isServiceRunning returned 1 (running) - so we try to stop </span><span class="nv">$TRDAEMON</span><span class="s2"> and then sleep for 1 second (count = </span><span class="nv">$counter</span><span class="s2">)"</span> &gt;&gt; <span class="s2">"</span><span class="nv">$DEBUG_LOG_FILE_PATH</span><span class="s2">"</span>
+            </span><span class="nb">echo</span> <span class="s2">"</span><span class="k">$(</span>date<span class="k">)</span><span class="s2"> :: &gt; &gt; &gt; isServiceRunning returned 1 (running) - so we try to stop </span><span class="nv">$TRDAEMON</span><span class="s2"> and then sleep for 1 second (count = </span><span class="nv">$counter</span><span class="s2">)"</span> &gt;&gt; <span class="s2">"</span><span class="nv">$DEBUG_LOG_FILE_PATH</span><span class="s2">"</span>;
 
-            sudo service <span class="s2">"</span><span class="nv">$TRDAEMON</span><span class="s2">"</span> stop &gt;&gt; <span class="s2">"</span><span class="nv">$DEBUG_LOG_FILE_PATH</span><span class="s2">"</span> 2&gt;&amp;1
-            sleep 1
+            sudo service <span class="s2">"</span><span class="nv">$TRDAEMON</span><span class="s2">"</span> stop &gt;&gt; <span class="s2">"</span><span class="nv">$DEBUG_LOG_FILE_PATH</span><span class="s2">"</span> 2&gt;&amp;1;
+            sleep 1;
 
-            <span class="nv">counter</span><span class="o">=</span><span class="s2">"</span><span class="k">$((</span> <span class="o">++</span>counter <span class="k">))</span><span class="s2">"</span>
-        <span class="k">fi
+            <span class="nv">counter</span><span class="o">=</span><span class="s2">"</span><span class="k">$((</span> <span class="o">++</span>counter <span class="k">))</span><span class="s2">"</span>;
+        <span class="k">fi</span>;
 
-    done
+    <span class="k">done</span>;
 
-    </span><span class="nb">echo</span> <span class="nv">$retval</span>
+    <span class="nb">echo</span> <span class="nv">$retval</span>;
 <span class="o">}</span>
 
 <span class="k">function </span>vpnReload <span class="o">{</span>
 
-    <span class="nb">echo</span> <span class="s2">"</span><span class="k">$(</span>date<span class="k">)</span><span class="s2"> :: *** Enter stopTransmissionDaemon"</span> &gt;&gt; <span class="s2">"</span><span class="nv">$DEBUG_LOG_FILE_PATH</span><span class="s2">"</span>
+    <span class="nb">echo</span> <span class="s2">"</span><span class="k">$(</span>date<span class="k">)</span><span class="s2"> :: *** Enter stopTransmissionDaemon"</span> &gt;&gt; <span class="s2">"</span><span class="nv">$DEBUG_LOG_FILE_PATH</span><span class="s2">"</span>;
 
-    <span class="nv">stopTDResult</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span>stopTransmissionDaemon<span class="k">)</span><span class="s2">"</span>
+    <span class="nv">stopTDResult</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span>stopTransmissionDaemon<span class="k">)</span><span class="s2">"</span>;
 
-    <span class="nb">echo</span> <span class="s2">"</span><span class="k">$(</span>date<span class="k">)</span><span class="s2"> :: --- Leaving stopTransmissionDaemon. retval = </span><span class="nv">$stopTDResult</span><span class="s2">"</span> &gt;&gt; <span class="s2">"</span><span class="nv">$DEBUG_LOG_FILE_PATH</span><span class="s2">"</span>
+    <span class="nb">echo</span> <span class="s2">"</span><span class="k">$(</span>date<span class="k">)</span><span class="s2"> :: --- Leaving stopTransmissionDaemon. retval = </span><span class="nv">$stopTDResult</span><span class="s2">"</span> &gt;&gt; <span class="s2">"</span><span class="nv">$DEBUG_LOG_FILE_PATH</span><span class="s2">"</span>;
 
-    <span class="k">if</span> <span class="o">[</span> <span class="s2">"</span><span class="nv">$stopTDResult</span><span class="s2">"</span> <span class="o">=</span> 0 <span class="o">]</span>; <span class="k">then
-        </span><span class="nb">echo</span> <span class="s2">"</span><span class="k">$(</span>date<span class="k">)</span><span class="s2"> :: &gt; &gt; &gt; stopTransmissionDaemon returned 0 (successfully stoppped) so now we restart openvpn service..."</span> &gt;&gt; <span class="s2">"</span><span class="nv">$DEBUG_LOG_FILE_PATH</span><span class="s2">"</span>
+    <span class="k">if</span> <span class="o">[</span> <span class="s2">"</span><span class="nv">$stopTDResult</span><span class="s2">"</span> <span class="o">=</span> 0 <span class="o">]</span>
+    <span class="k">then
+        </span><span class="nb">echo</span> <span class="s2">"</span><span class="k">$(</span>date<span class="k">)</span><span class="s2"> :: &gt; &gt; &gt; stopTransmissionDaemon returned 0 (successfully stoppped) so now we restart openvpn service..."</span> &gt;&gt; <span class="s2">"</span><span class="nv">$DEBUG_LOG_FILE_PATH</span><span class="s2">"</span>;
 
-        <span class="nb">local </span><span class="nv">retval</span><span class="o">=</span>2
-        <span class="nb">local </span><span class="nv">counter</span><span class="o">=</span>0
+        <span class="nb">local </span><span class="nv">retval</span><span class="o">=</span>2;
+        <span class="nb">local </span><span class="nv">counter</span><span class="o">=</span>0;
 
-        <span class="k">while</span> <span class="o">[</span> <span class="nv">$retval</span> -gt 1 <span class="o">]</span>; <span class="k">do
-            </span><span class="nb">echo</span> <span class="s2">"</span><span class="k">$(</span>date<span class="k">)</span><span class="s2"> :: &gt; &gt; &gt; Restart openvpn and then wait 10 seconds before checking IP Address (attempt no. </span><span class="nv">$counter</span><span class="s2">)"</span> &gt;&gt; <span class="s2">"</span><span class="nv">$DEBUG_LOG_FILE_PATH</span><span class="s2">"</span>
+        <span class="k">while</span> <span class="o">[</span> <span class="nv">$retval</span> -gt 1 <span class="o">]</span>
+        <span class="k">do
+            </span><span class="nb">echo</span> <span class="s2">"</span><span class="k">$(</span>date<span class="k">)</span><span class="s2"> :: &gt; &gt; &gt; Restart openvpn and then wait 10 seconds before checking IP Address (attempt no. </span><span class="nv">$counter</span><span class="s2">)"</span> &gt;&gt; <span class="s2">"</span><span class="nv">$DEBUG_LOG_FILE_PATH</span><span class="s2">"</span>;
 
-            sudo service openvpn restart &gt;&gt; <span class="s2">"</span><span class="nv">$DEBUG_LOG_FILE_PATH</span><span class="s2">"</span> 2&gt;&amp;1
-            sleep 16
+            sudo service openvpn restart &gt;&gt; <span class="s2">"</span><span class="nv">$DEBUG_LOG_FILE_PATH</span><span class="s2">"</span> 2&gt;&amp;1;
+            sleep 16;
 
-            <span class="nb">echo</span> <span class="s2">"</span><span class="k">$(</span>date<span class="k">)</span><span class="s2"> :: *** Enter checkvpn [check for non domestic IP Address...]"</span> &gt;&gt; <span class="s2">"</span><span class="nv">$DEBUG_LOG_FILE_PATH</span><span class="s2">"</span>
+            <span class="nb">echo</span> <span class="s2">"</span><span class="k">$(</span>date<span class="k">)</span><span class="s2"> :: *** Enter checkvpn [check for non domestic IP Address...]"</span> &gt;&gt; <span class="s2">"</span><span class="nv">$DEBUG_LOG_FILE_PATH</span><span class="s2">"</span>;
 
-            <span class="k">if</span> <span class="o">[</span> <span class="s2">"</span><span class="k">$(</span>chkvpn<span class="k">)</span><span class="s2">"</span> <span class="o">=</span> 0 <span class="o">]</span>; <span class="k">then
-                </span><span class="nb">echo</span> <span class="s2">"</span><span class="k">$(</span>date<span class="k">)</span><span class="s2"> :: &gt; &gt; &gt; SUCCESS *** IP Address is: [</span><span class="k">$(</span>getExtIp<span class="k">)</span><span class="s2">] *** return 0"</span> &gt;&gt; <span class="s2">"</span><span class="nv">$DEBUG_LOG_FILE_PATH</span><span class="s2">"</span>
-                <span class="nv">retval</span><span class="o">=</span>0
-            <span class="k">elif</span> <span class="o">[</span> <span class="nv">$counter</span> -gt 4 <span class="o">]</span>; <span class="k">then
-                </span><span class="nb">echo</span> <span class="s2">"</span><span class="k">$(</span>date<span class="k">)</span><span class="s2"> :: ~ ~ ~ FAILURE --- IP Address inaccessible/unchanging [</span><span class="nv">$SXIP</span><span class="s2">] after 5 attempts --- return 1"</span> &gt;&gt; <span class="s2">"</span><span class="nv">$DEBUG_LOG_FILE_PATH</span><span class="s2">"</span>
-                <span class="nv">retval</span><span class="o">=</span>1
+            <span class="k">if</span> <span class="o">[</span> <span class="s2">"</span><span class="k">$(</span>chkvpn<span class="k">)</span><span class="s2">"</span> <span class="o">=</span> 0 <span class="o">]</span>
+            <span class="k">then
+                </span><span class="nb">echo</span> <span class="s2">"</span><span class="k">$(</span>date<span class="k">)</span><span class="s2"> :: &gt; &gt; &gt; SUCCESS *** IP Address is: [</span><span class="k">$(</span>getExtIp<span class="k">)</span><span class="s2">] *** return 0"</span> &gt;&gt; <span class="s2">"</span><span class="nv">$DEBUG_LOG_FILE_PATH</span><span class="s2">"</span>;
+                <span class="nv">retval</span><span class="o">=</span>0;
+            <span class="k">elif</span> <span class="o">[</span> <span class="nv">$counter</span> -gt 4 <span class="o">]</span>
+            <span class="k">then
+                </span><span class="nb">echo</span> <span class="s2">"</span><span class="k">$(</span>date<span class="k">)</span><span class="s2"> :: ~ ~ ~ FAILURE --- IP Address inaccessible/unchanging [</span><span class="nv">$SXIP</span><span class="s2">] after 5 attempts --- return 1"</span> &gt;&gt; <span class="s2">"</span><span class="nv">$DEBUG_LOG_FILE_PATH</span><span class="s2">"</span>;
+                <span class="nv">retval</span><span class="o">=</span>1;
             <span class="k">else
-                </span>sleep 4
-                <span class="nv">counter</span><span class="o">=</span><span class="s2">"</span><span class="k">$((</span> <span class="o">++</span>counter <span class="k">))</span><span class="s2">"</span>
-            <span class="k">fi
+                </span>sleep 4;
+                <span class="nv">counter</span><span class="o">=</span><span class="s2">"</span><span class="k">$((</span> <span class="o">++</span>counter <span class="k">))</span><span class="s2">"</span>;
+            <span class="k">fi</span>;
 
-        done
+        <span class="k">done</span>;
 
-        </span><span class="nb">echo</span> <span class="nv">$retval</span>
-    <span class="k">fi</span>
+        <span class="nb">echo</span> <span class="nv">$retval</span>;
+    <span class="k">fi</span>;
 <span class="o">}</span>
 
 <span class="c"># Check ext IP isnt $SXIP</span>
 <span class="c"># Human readable</span>
 <span class="k">function </span>checkvpn <span class="o">{</span>
 
-    <span class="k">if</span> <span class="o">[</span> -f <span class="s2">"</span><span class="nv">$LAST_NATURAL_IP_FILE</span><span class="s2">"</span> <span class="o">]</span>; <span class="k">then </span><span class="nv">SXIP</span><span class="o">=</span><span class="k">$(</span>cat <span class="nv">$LAST_NATURAL_IP_FILE</span><span class="k">)</span> <span class="o">&amp;&amp;</span> <span class="nb">export </span>SXIP; <span class="k">fi
-    </span><span class="nb">local </span><span class="nv">xip</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span>getExtIp<span class="k">)</span><span class="s2">"</span>
+    <span class="k">if</span> <span class="o">[</span> -f <span class="s2">"</span><span class="nv">$LAST_NATURAL_IP_FILE</span><span class="s2">"</span> <span class="o">]</span>; <span class="k">then </span><span class="nv">SXIP</span><span class="o">=</span><span class="k">$(</span>cat <span class="nv">$LAST_NATURAL_IP_FILE</span><span class="k">)</span> <span class="o">&amp;&amp;</span> <span class="nb">export </span>SXIP; <span class="k">fi</span>;
+    <span class="nb">local </span><span class="nv">xip</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span>getExtIp<span class="k">)</span><span class="s2">"</span>;
 
-    <span class="k">if</span> <span class="o">[</span> -z <span class="s2">"</span><span class="nv">$xip</span><span class="s2">"</span> <span class="o">]</span>; <span class="k">then
-        </span><span class="nb">echo</span> <span class="s2">"</span><span class="k">$(</span>date<span class="k">)</span><span class="s2"> :: *** VPN Momentary Failure - External IP Cannot be Acquired"</span>
-    <span class="k">elif</span> <span class="o">[[</span> <span class="s2">"</span><span class="nv">$xip</span><span class="s2">"</span> <span class="o">==</span> <span class="s2">"</span><span class="nv">$SXIP</span><span class="s2">"</span> <span class="o">]]</span>; <span class="k">then
-        </span><span class="nb">echo</span> <span class="s2">"</span><span class="k">$(</span>date<span class="k">)</span><span class="s2"> :: *** VPN Failure - External IP = [</span><span class="nv">$xip</span><span class="s2">]"</span>
+    <span class="k">if</span> <span class="o">[</span> -z <span class="s2">"</span><span class="nv">$xip</span><span class="s2">"</span> <span class="o">]</span>
+    <span class="k">then
+        </span><span class="nb">echo</span> <span class="s2">"</span><span class="k">$(</span>date<span class="k">)</span><span class="s2"> :: *** VPN Momentary Failure - External IP Cannot be Acquired"</span>;
+    <span class="k">elif</span> <span class="o">[[</span> <span class="s2">"</span><span class="nv">$xip</span><span class="s2">"</span> <span class="o">==</span> <span class="s2">"</span><span class="nv">$SXIP</span><span class="s2">"</span> <span class="o">]]</span>
+    <span class="k">then
+        </span><span class="nb">echo</span> <span class="s2">"</span><span class="k">$(</span>date<span class="k">)</span><span class="s2"> :: *** VPN Failure - External IP = [</span><span class="nv">$xip</span><span class="s2">]"</span>;
     <span class="k">else
-        </span><span class="nb">echo</span> <span class="s2">"</span><span class="k">$(</span>date<span class="k">)</span><span class="s2"> :: *** VPN Success - External IP = [</span><span class="nv">$xip</span><span class="s2">]"</span>
-    <span class="k">fi</span>
+        </span><span class="nb">echo</span> <span class="s2">"</span><span class="k">$(</span>date<span class="k">)</span><span class="s2"> :: *** VPN Success - External IP = [</span><span class="nv">$xip</span><span class="s2">]"</span>;
+    <span class="k">fi</span>;
 <span class="o">}</span>
 
 <span class="c"># Returns 0 (success) or 1 (fail)</span>
 <span class="k">function </span>chkvpn <span class="o">{</span>
 
-    <span class="k">if</span> <span class="o">[</span> -f <span class="s2">"</span><span class="nv">$LAST_NATURAL_IP_FILE</span><span class="s2">"</span> <span class="o">]</span>; <span class="k">then </span><span class="nv">SXIP</span><span class="o">=</span><span class="k">$(</span>cat <span class="nv">$LAST_NATURAL_IP_FILE</span><span class="k">)</span> <span class="o">&amp;&amp;</span> <span class="nb">export </span>SXIP; <span class="k">fi
-    </span><span class="nb">local </span><span class="nv">xip</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span>getExtIp<span class="k">)</span><span class="s2">"</span>
+    <span class="k">if</span> <span class="o">[</span> -f <span class="s2">"</span><span class="nv">$LAST_NATURAL_IP_FILE</span><span class="s2">"</span> <span class="o">]</span>; <span class="k">then </span><span class="nv">SXIP</span><span class="o">=</span><span class="k">$(</span>cat <span class="nv">$LAST_NATURAL_IP_FILE</span><span class="k">)</span> <span class="o">&amp;&amp;</span> <span class="nb">export </span>SXIP; <span class="k">fi</span>;
+    <span class="nb">local </span><span class="nv">xip</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span>getExtIp<span class="k">)</span><span class="s2">"</span>;
 
-    <span class="k">if</span>  <span class="o">[</span> -n <span class="s2">"</span><span class="nv">$xip</span><span class="s2">"</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="o">[[</span> <span class="s2">"</span><span class="nv">$xip</span><span class="s2">"</span> !<span class="o">=</span> <span class="s2">"</span><span class="nv">$SXIP</span><span class="s2">"</span> <span class="o">]]</span>; <span class="k">then
-        </span><span class="nb">echo </span>0
+    <span class="k">if</span>  <span class="o">[</span> -n <span class="s2">"</span><span class="nv">$xip</span><span class="s2">"</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="o">[[</span> <span class="s2">"</span><span class="nv">$xip</span><span class="s2">"</span> !<span class="o">=</span> <span class="s2">"</span><span class="nv">$SXIP</span><span class="s2">"</span> <span class="o">]]</span>
+    <span class="k">then
+        </span><span class="nb">echo </span>0;
     <span class="k">else
-        </span><span class="nb">echo </span>1
-    <span class="k">fi</span>
+        </span><span class="nb">echo </span>1;
+    <span class="k">fi</span>;
 <span class="o">}</span>
 
 <span class="c"># As above but takes IP argument to compare with</span>
 <span class="k">function </span>chkvpnargs <span class="o">{</span>
 
-    <span class="k">if</span> <span class="o">[</span> -n <span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span> <span class="o">]</span>; <span class="k">then
+    <span class="k">if</span> <span class="o">[</span> -n <span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span> <span class="o">]</span>
+    <span class="k">then
+        if</span> <span class="o">[</span> -f <span class="s2">"</span><span class="nv">$LAST_NATURAL_IP_FILE</span><span class="s2">"</span> <span class="o">]</span>; <span class="k">then </span><span class="nv">SXIP</span><span class="o">=</span><span class="k">$(</span>cat <span class="nv">$LAST_NATURAL_IP_FILE</span><span class="k">)</span> <span class="o">&amp;&amp;</span> <span class="nb">export </span>SXIP; <span class="k">fi</span>;
+        <span class="nb">local </span><span class="nv">xip</span><span class="o">=</span><span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span>;
 
-        if</span> <span class="o">[</span> -f <span class="s2">"</span><span class="nv">$LAST_NATURAL_IP_FILE</span><span class="s2">"</span> <span class="o">]</span>; <span class="k">then </span><span class="nv">SXIP</span><span class="o">=</span><span class="k">$(</span>cat <span class="nv">$LAST_NATURAL_IP_FILE</span><span class="k">)</span> <span class="o">&amp;&amp;</span> <span class="nb">export </span>SXIP; <span class="k">fi
-        </span><span class="nb">local </span><span class="nv">xip</span><span class="o">=</span><span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span>
-
-        <span class="k">if</span> <span class="o">[[</span> <span class="s2">"</span><span class="nv">$xip</span><span class="s2">"</span> !<span class="o">=</span> <span class="s2">"</span><span class="nv">$SXIP</span><span class="s2">"</span> <span class="o">]]</span>; <span class="k">then
-            </span><span class="nb">echo </span>0
+        <span class="k">if</span> <span class="o">[[</span> <span class="s2">"</span><span class="nv">$xip</span><span class="s2">"</span> !<span class="o">=</span> <span class="s2">"</span><span class="nv">$SXIP</span><span class="s2">"</span> <span class="o">]]</span>
+        <span class="k">then
+            </span><span class="nb">echo </span>0;
         <span class="k">else
-            </span><span class="nb">echo </span>1
-        <span class="k">fi
+            </span><span class="nb">echo </span>1;
+        <span class="k">fi</span>;
 
-    else
-        </span><span class="nb">echo </span>1
-    <span class="k">fi</span>
+    <span class="k">else
+        </span><span class="nb">echo </span>1;
+    <span class="k">fi</span>;
 <span class="o">}</span>
 
 <span class="k">function </span>vpnRotateConfig <span class="o">{</span>
 
-    <span class="k">if</span> <span class="o">[</span> -n <span class="nv">$CURRENT_VPN_INDEX</span> <span class="o">]</span>; <span class="k">then
+    <span class="k">if</span> <span class="o">[</span> -n <span class="nv">$CURRENT_VPN_INDEX</span> <span class="o">]</span>
+    <span class="k">then
+        </span><span class="nb">echo</span> <span class="s2">"</span><span class="k">$(</span>date<span class="k">)</span><span class="s2"> :: &gt; &gt; &gt; CURRENT_VPN_INDEX: </span><span class="nv">$CURRENT_VPN_INDEX</span><span class="s2">"</span> &gt;&gt; <span class="s2">"</span><span class="nv">$DEBUG_LOG_FILE_PATH</span><span class="s2">"</span>;
 
-        </span><span class="nb">echo</span> <span class="s2">"</span><span class="k">$(</span>date<span class="k">)</span><span class="s2"> :: &gt; &gt; &gt; CURRENT_VPN_INDEX: </span><span class="nv">$CURRENT_VPN_INDEX</span><span class="s2">"</span> &gt;&gt; <span class="s2">"</span><span class="nv">$DEBUG_LOG_FILE_PATH</span><span class="s2">"</span>
+        <span class="o">((</span> ++CURRENT_VPN_INDEX <span class="o">))</span>; <span class="nb">export </span>CURRENT_VPN_INDEX;
 
-        <span class="o">((</span> ++CURRENT_VPN_INDEX <span class="o">))</span>; <span class="nb">export </span>CURRENT_VPN_INDEX
-
-        <span class="k">if</span> <span class="o">[</span> <span class="nv">$CURRENT_VPN_INDEX</span> -eq <span class="k">${#</span><span class="nv">VPNLIST</span><span class="p">[@]</span><span class="k">}</span> <span class="o">]</span>; <span class="k">then
-            </span><span class="nv">CURRENT_VPN_INDEX</span><span class="o">=</span>0; <span class="nb">export </span>CURRENT_VPN_INDEX
+        <span class="k">if</span> <span class="o">[</span> <span class="nv">$CURRENT_VPN_INDEX</span> -eq <span class="k">${#</span><span class="nv">VPNLIST</span><span class="p">[@]</span><span class="k">}</span> <span class="o">]</span>
+        <span class="k">then
+            </span><span class="nv">CURRENT_VPN_INDEX</span><span class="o">=</span>0; <span class="nb">export </span>CURRENT_VPN_INDEX;
         <span class="k">fi
 
-        </span><span class="nb">echo</span> <span class="s2">"</span><span class="k">$(</span>date<span class="k">)</span><span class="s2"> :: &gt; &gt; &gt; NEW_VPN_INDEX: </span><span class="nv">$CURRENT_VPN_INDEX</span><span class="s2">"</span> &gt;&gt; <span class="s2">"</span><span class="nv">$DEBUG_LOG_FILE_PATH</span><span class="s2">"</span>
+        </span><span class="nb">echo</span> <span class="s2">"</span><span class="k">$(</span>date<span class="k">)</span><span class="s2"> :: &gt; &gt; &gt; NEW_VPN_INDEX: </span><span class="nv">$CURRENT_VPN_INDEX</span><span class="s2">"</span> &gt;&gt; <span class="s2">"</span><span class="nv">$DEBUG_LOG_FILE_PATH</span><span class="s2">"</span>;
 
-        <span class="nv">nextVpn</span><span class="o">=</span><span class="s2">"</span><span class="k">${</span><span class="nv">VPNLIST</span><span class="p">[</span><span class="nv">$CURRENT_VPN_INDEX</span><span class="p">]</span><span class="k">}</span><span class="s2">"</span>
-        <span class="nb">echo</span> <span class="s2">"</span><span class="k">$(</span>date<span class="k">)</span><span class="s2"> :: &gt; &gt; &gt; nextVpn: </span><span class="nv">$nextVpn</span><span class="s2">"</span> &gt;&gt; <span class="s2">"</span><span class="nv">$DEBUG_LOG_FILE_PATH</span><span class="s2">"</span>
+        <span class="nv">nextVpn</span><span class="o">=</span><span class="s2">"</span><span class="k">${</span><span class="nv">VPNLIST</span><span class="p">[</span><span class="nv">$CURRENT_VPN_INDEX</span><span class="p">]</span><span class="k">}</span><span class="s2">"</span>;
+        <span class="nb">echo</span> <span class="s2">"</span><span class="k">$(</span>date<span class="k">)</span><span class="s2"> :: &gt; &gt; &gt; nextVpn: </span><span class="nv">$nextVpn</span><span class="s2">"</span> &gt;&gt; <span class="s2">"</span><span class="nv">$DEBUG_LOG_FILE_PATH</span><span class="s2">"</span>;
 
-        <span class="nv">nextVpnConfPath</span><span class="o">=</span><span class="s2">"</span><span class="k">${</span><span class="nv">VPN_CONF_PATH</span><span class="k">}</span><span class="s2">/</span><span class="k">${</span><span class="nv">nextVpn</span><span class="k">}</span><span class="s2">.ovpn"</span>
-        <span class="nb">echo</span> <span class="s2">"</span><span class="k">$(</span>date<span class="k">)</span><span class="s2"> :: &gt; &gt; &gt; nextVpnConfPath: </span><span class="nv">$nextVpnConfPath</span><span class="s2">"</span> &gt;&gt; <span class="s2">"</span><span class="nv">$DEBUG_LOG_FILE_PATH</span><span class="s2">"</span>
+        <span class="nv">nextVpnConfPath</span><span class="o">=</span><span class="s2">"</span><span class="k">${</span><span class="nv">VPN_CONF_PATH</span><span class="k">}</span><span class="s2">/</span><span class="k">${</span><span class="nv">nextVpn</span><span class="k">}</span><span class="s2">.ovpn"</span>;
+        <span class="nb">echo</span> <span class="s2">"</span><span class="k">$(</span>date<span class="k">)</span><span class="s2"> :: &gt; &gt; &gt; nextVpnConfPath: </span><span class="nv">$nextVpnConfPath</span><span class="s2">"</span> &gt;&gt; <span class="s2">"</span><span class="nv">$DEBUG_LOG_FILE_PATH</span><span class="s2">"</span>;
 
-        rm -f <span class="s2">"</span><span class="k">${</span><span class="nv">VPN_MAIN_CONF_FILE_PATH</span><span class="k">}</span><span class="s2">"</span>
-        ln -s <span class="s2">"</span><span class="k">${</span><span class="nv">nextVpnConfPath</span><span class="k">}</span><span class="s2">"</span> <span class="s2">"</span><span class="k">${</span><span class="nv">VPN_MAIN_CONF_FILE_PATH</span><span class="k">}</span><span class="s2">"</span>
+        rm -f <span class="s2">"</span><span class="k">${</span><span class="nv">VPN_MAIN_CONF_FILE_PATH</span><span class="k">}</span><span class="s2">"</span>;
+        ln -s <span class="s2">"</span><span class="k">${</span><span class="nv">nextVpnConfPath</span><span class="k">}</span><span class="s2">"</span> <span class="s2">"</span><span class="k">${</span><span class="nv">VPN_MAIN_CONF_FILE_PATH</span><span class="k">}</span><span class="s2">"</span>;
 
-        <span class="nv">CURRENT_VPN_NAME</span><span class="o">=</span><span class="k">${</span><span class="nv">nextVpn</span><span class="k">}</span>; <span class="nb">export </span>CURRENT_VPN_NAME
+        <span class="nv">CURRENT_VPN_NAME</span><span class="o">=</span><span class="k">${</span><span class="nv">nextVpn</span><span class="k">}</span>; <span class="nb">export </span>CURRENT_VPN_NAME;
 
-    <span class="k">fi</span>
+    <span class="k">fi</span>;
 <span class="o">}</span>
 
 <span class="k">function </span>isServiceRunning <span class="o">{</span>
 
-    <span class="k">if</span> <span class="o">[</span> -n <span class="nv">$1</span> <span class="o">]</span>; <span class="k">then
+    <span class="k">if</span> <span class="o">[</span> -n <span class="nv">$1</span> <span class="o">]</span>
+    <span class="k">then
+        </span><span class="nb">local </span><span class="nv">service</span><span class="o">=</span><span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span>;
+        <span class="nb">echo</span> <span class="s2">"</span><span class="k">$(</span>date<span class="k">)</span><span class="s2"> :: &gt; &gt; &gt; isServiceRunning? service: </span><span class="nv">$service</span><span class="s2">"</span> &gt;&gt; <span class="s2">"</span><span class="nv">$DEBUG_LOG_FILE_PATH</span><span class="s2">"</span>;
 
-        </span><span class="nb">local </span><span class="nv">service</span><span class="o">=</span><span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span>
-        <span class="nb">echo</span> <span class="s2">"</span><span class="k">$(</span>date<span class="k">)</span><span class="s2"> :: &gt; &gt; &gt; isServiceRunning? service: </span><span class="nv">$service</span><span class="s2">"</span> &gt;&gt; <span class="s2">"</span><span class="nv">$DEBUG_LOG_FILE_PATH</span><span class="s2">"</span>
-
-        <span class="k">if</span> <span class="o">((</span> <span class="k">$(</span>ps -ef | grep -v grep | grep <span class="nv">$service</span> | wc -l<span class="k">)</span> &gt; 0 <span class="o">))</span>; <span class="k">then
-            </span><span class="nb">echo</span> <span class="s2">"</span><span class="k">$(</span>date<span class="k">)</span><span class="s2"> :: &gt; &gt; &gt; YES *** </span><span class="nv">$service</span><span class="s2"> IS running."</span> &gt;&gt; <span class="s2">"</span><span class="nv">$DEBUG_LOG_FILE_PATH</span><span class="s2">"</span>
-            <span class="nb">echo </span>1
+        <span class="k">if</span> <span class="o">((</span> <span class="k">$(</span>ps -ef | grep -v grep | grep <span class="nv">$service</span> | wc -l<span class="k">)</span> &gt; 0 <span class="o">))</span>
+        <span class="k">then
+            </span><span class="nb">echo</span> <span class="s2">"</span><span class="k">$(</span>date<span class="k">)</span><span class="s2"> :: &gt; &gt; &gt; YES *** </span><span class="nv">$service</span><span class="s2"> IS running."</span> &gt;&gt; <span class="s2">"</span><span class="nv">$DEBUG_LOG_FILE_PATH</span><span class="s2">"</span>;
+            <span class="nb">echo </span>1;
         <span class="k">else
-            </span><span class="nb">echo</span> <span class="s2">"</span><span class="k">$(</span>date<span class="k">)</span><span class="s2"> :: ~ ~ ~ NO --- </span><span class="nv">$service</span><span class="s2"> is NOT running."</span> &gt;&gt; <span class="s2">"</span><span class="nv">$DEBUG_LOG_FILE_PATH</span><span class="s2">"</span>
-            <span class="nb">echo </span>0
-        <span class="k">fi
-
-    else</span>
-        &gt;&amp;2 <span class="nb">echo</span> <span class="s2">"</span><span class="k">$(</span>date<span class="k">)</span><span class="s2"> :: *** Usage: </span><span class="nv">$0</span><span class="s2"> &lt;name_of_service&gt;"</span>
-    <span class="k">fi</span>
+            </span><span class="nb">echo</span> <span class="s2">"</span><span class="k">$(</span>date<span class="k">)</span><span class="s2"> :: ~ ~ ~ NO --- </span><span class="nv">$service</span><span class="s2"> is NOT running."</span> &gt;&gt; <span class="s2">"</span><span class="nv">$DEBUG_LOG_FILE_PATH</span><span class="s2">"</span>;
+            <span class="nb">echo </span>0;
+        <span class="k">fi</span>;
+    <span class="k">else</span>
+        &gt;&amp;2 <span class="nb">echo</span> <span class="s2">"</span><span class="k">$(</span>date<span class="k">)</span><span class="s2"> :: *** Usage: </span><span class="nv">$0</span><span class="s2"> &lt;name_of_service&gt;"</span>;
+    <span class="k">fi</span>;
 <span class="o">}</span>
 
 <span class="c">###############################################################################################</span>
@@ -368,17 +389,19 @@ function </span>getExtIp <span class="o">{</span>
     <span class="nb">local </span>e
     <span class="nb">local </span><span class="nv">arr_count</span><span class="o">=</span>0
 
-    <span class="k">for </span>e <span class="k">in</span> <span class="s2">"</span><span class="k">${</span><span class="p">@</span>:2<span class="k">}</span><span class="s2">"</span>; <span class="k">do
-        if</span> <span class="o">[[</span> <span class="s2">"</span><span class="nv">$e</span><span class="s2">"</span> <span class="o">==</span> <span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span> <span class="o">]]</span>; <span class="k">then
-            </span><span class="nb">echo</span> <span class="nv">$arr_count</span>
-            <span class="k">return </span>0
+    <span class="k">for </span>e <span class="k">in</span> <span class="s2">"</span><span class="k">${</span><span class="p">@</span>:2<span class="k">}</span><span class="s2">"</span>
+    <span class="k">do
+        if</span> <span class="o">[[</span> <span class="s2">"</span><span class="nv">$e</span><span class="s2">"</span> <span class="o">==</span> <span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span> <span class="o">]]</span>
+        <span class="k">then
+            </span><span class="nb">echo</span> <span class="nv">$arr_count</span>;
+            <span class="k">return </span>0;
         <span class="k">else
-            </span><span class="nv">arr_count</span><span class="o">=</span><span class="s2">"</span><span class="k">$((</span> <span class="o">++</span>arr_count <span class="k">))</span><span class="s2">"</span>
-        <span class="k">fi
-    done
+            </span><span class="nv">arr_count</span><span class="o">=</span><span class="s2">"</span><span class="k">$((</span> <span class="o">++</span>arr_count <span class="k">))</span><span class="s2">"</span>;
+        <span class="k">fi</span>;
+    <span class="k">done</span>;
 
-    </span><span class="nb">echo</span> <span class="s2">""</span>
-    <span class="k">return </span>1
+    <span class="nb">echo</span> <span class="s2">""</span>;
+    <span class="k">return </span>1;
 <span class="o">}</span>
 
 <span class="k">function </span>sanitizeArgument <span class="o">{</span>
@@ -390,56 +413,60 @@ function </span>getExtIp <span class="o">{</span>
 
     <span class="nb">local </span>retval
 
-    <span class="k">if</span> <span class="o">[</span> <span class="s2">"$#"</span> -ne 1 <span class="o">]</span>; <span class="k">then
-        return </span>1
-    <span class="k">fi
+    <span class="k">if</span> <span class="o">[</span> <span class="s2">"$#"</span> -ne 1 <span class="o">]</span>
+    <span class="k">then
+        return </span>1;
+    <span class="k">fi</span>;
 
-    </span><span class="nv">suspectArgument</span><span class="o">=</span><span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span>
-    <span class="nv">cleanArgument</span><span class="o">=</span><span class="s2">"</span><span class="k">${</span><span class="nv">suspectArgument</span><span class="p">//[^a-zA-Z0-9]/</span><span class="k">}</span><span class="s2">"</span>
-    <span class="nb">echo</span> <span class="s2">"</span><span class="nv">$cleanArgument</span><span class="s2">"</span>
+    <span class="nv">suspectArgument</span><span class="o">=</span><span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span>;
+    <span class="nv">cleanArgument</span><span class="o">=</span><span class="s2">"</span><span class="k">${</span><span class="nv">suspectArgument</span><span class="p">//[^a-zA-Z0-9]/</span><span class="k">}</span><span class="s2">"</span>;
+    <span class="nb">echo</span> <span class="s2">"</span><span class="nv">$cleanArgument</span><span class="s2">"</span>;
 
-    <span class="k">return </span>0
+    <span class="k">return </span>0;
 <span class="o">}</span>
 
 <span class="k">function </span>testArgumentIsNumeric <span class="o">{</span>
 
-    <span class="nb">local </span>retval
+    <span class="nb">local </span>retval;
 
-    <span class="k">if</span> <span class="o">[</span> <span class="s2">"$#"</span> -ne 1 <span class="o">]</span>; <span class="k">then
-        </span><span class="nv">retval</span><span class="o">=</span>1
-    <span class="k">fi
+    <span class="k">if</span> <span class="o">[</span> <span class="s2">"$#"</span> -ne 1 <span class="o">]</span>
+    <span class="k">then
+        </span><span class="nv">retval</span><span class="o">=</span>1;
+    <span class="k">fi</span>;
 
-    if</span> <span class="o">[</span> <span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span> -eq <span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span> <span class="o">]</span> 2&gt; /dev/null; <span class="k">then
-        </span><span class="nv">retval</span><span class="o">=</span>0
+    <span class="k">if</span> <span class="o">[</span> <span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span> -eq <span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span> <span class="o">]</span> 2&gt; /dev/null
+    <span class="k">then
+        </span><span class="nv">retval</span><span class="o">=</span>0;
     <span class="k">else
-        </span><span class="nv">retval</span><span class="o">=</span>2
-    <span class="k">fi
+        </span><span class="nv">retval</span><span class="o">=</span>2;
+    <span class="k">fi</span>;
 
-    return</span> <span class="nv">$retval</span>
+    <span class="k">return</span> <span class="nv">$retval</span>;
 <span class="o">}</span>
 
 <span class="k">function </span>testArgumentIsIPv4Address <span class="o">{</span>
 
-    <span class="k">if</span> <span class="o">[</span> <span class="s2">"$#"</span> -ne 1 <span class="o">]</span>; <span class="k">then
-        return </span>1
-    <span class="k">fi
+    <span class="k">if</span> <span class="o">[</span> <span class="s2">"$#"</span> -ne 1 <span class="o">]</span>
+    <span class="k">then
+        return </span>1;
+    <span class="k">fi</span>;
 
-    </span><span class="nb">local </span><span class="nv">ip</span><span class="o">=</span><span class="nv">$1</span>
-    <span class="nb">local </span><span class="nv">retval</span><span class="o">=</span>1
+    <span class="nb">local </span><span class="nv">ip</span><span class="o">=</span><span class="nv">$1</span>;
+    <span class="nb">local </span><span class="nv">retval</span><span class="o">=</span>1;
 
-    <span class="k">if</span> <span class="o">[[</span> <span class="nv">$ip</span> <span class="o">=</span>~ ^[0-9]<span class="o">{</span>1,3<span class="o">}</span><span class="se">\.</span><span class="o">[</span>0-9]<span class="o">{</span>1,3<span class="o">}</span><span class="se">\.</span><span class="o">[</span>0-9]<span class="o">{</span>1,3<span class="o">}</span><span class="se">\.</span><span class="o">[</span>0-9]<span class="o">{</span>1,3<span class="o">}</span><span class="nv">$ </span><span class="o">]]</span>; <span class="k">then
+    <span class="k">if</span> <span class="o">[[</span> <span class="nv">$ip</span> <span class="o">=</span>~ ^[0-9]<span class="o">{</span>1,3<span class="o">}</span><span class="se">\.</span><span class="o">[</span>0-9]<span class="o">{</span>1,3<span class="o">}</span><span class="se">\.</span><span class="o">[</span>0-9]<span class="o">{</span>1,3<span class="o">}</span><span class="se">\.</span><span class="o">[</span>0-9]<span class="o">{</span>1,3<span class="o">}</span><span class="nv">$ </span><span class="o">]]</span>
+    <span class="k">then
+        </span><span class="nv">OIFS</span><span class="o">=</span><span class="nv">$IFS</span>;
+        <span class="nv">IFS</span><span class="o">=</span><span class="s1">'.'</span>;
+        <span class="nv">ip</span><span class="o">=(</span><span class="nv">$ip</span><span class="o">)</span>;
+        <span class="nv">IFS</span><span class="o">=</span><span class="nv">$OIFS</span>;
 
-        </span><span class="nv">OIFS</span><span class="o">=</span><span class="nv">$IFS</span>
-        <span class="nv">IFS</span><span class="o">=</span><span class="s1">'.'</span>
-        <span class="nv">ip</span><span class="o">=(</span><span class="nv">$ip</span><span class="o">)</span>
-        <span class="nv">IFS</span><span class="o">=</span><span class="nv">$OIFS</span>
+        <span class="o">[[</span> <span class="k">${</span><span class="nv">ip</span><span class="p">[0]</span><span class="k">}</span> -le 255 <span class="o">&amp;&amp;</span> <span class="k">${</span><span class="nv">ip</span><span class="p">[1]</span><span class="k">}</span> -le 255 <span class="o">&amp;&amp;</span> <span class="k">${</span><span class="nv">ip</span><span class="p">[2]</span><span class="k">}</span> -le 255 <span class="o">&amp;&amp;</span> <span class="k">${</span><span class="nv">ip</span><span class="p">[3]</span><span class="k">}</span> -le 255 <span class="o">]]</span>;
+        <span class="nv">retval</span><span class="o">=</span><span class="nv">$?</span>;
 
-        <span class="o">[[</span> <span class="k">${</span><span class="nv">ip</span><span class="p">[0]</span><span class="k">}</span> -le 255 <span class="o">&amp;&amp;</span> <span class="k">${</span><span class="nv">ip</span><span class="p">[1]</span><span class="k">}</span> -le 255 <span class="o">&amp;&amp;</span> <span class="k">${</span><span class="nv">ip</span><span class="p">[2]</span><span class="k">}</span> -le 255 <span class="o">&amp;&amp;</span> <span class="k">${</span><span class="nv">ip</span><span class="p">[3]</span><span class="k">}</span> -le 255 <span class="o">]]</span>
-        <span class="nv">retval</span><span class="o">=</span><span class="nv">$?</span>
+    <span class="k">fi</span>;
 
-    <span class="k">fi
-
-    return</span> <span class="nv">$retval</span>
+    <span class="k">return</span> <span class="nv">$retval</span>;
 <span class="o">}</span></code></pre></div> <p><code>$HOME/.bash.d/.bash_geo</code></p> <div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c">#!/bin/bash</span>
 
 <span class="c">###############################################################################################</span>
@@ -448,23 +475,23 @@ function </span>getExtIp <span class="o">{</span>
 
 <span class="k">function </span>validip<span class="o">()</span>
 <span class="o">{</span>
-    <span class="nb">local  </span><span class="nv">ip</span><span class="o">=</span><span class="nv">$1</span>
-    <span class="nb">local  </span><span class="nv">stat</span><span class="o">=</span>1
+    <span class="nb">local  </span><span class="nv">ip</span><span class="o">=</span><span class="nv">$1</span>;
+    <span class="nb">local  </span><span class="nv">stat</span><span class="o">=</span>1;
 
-    <span class="k">if</span> <span class="o">[[</span> <span class="nv">$ip</span> <span class="o">=</span>~ ^[0-9]<span class="o">{</span>1,3<span class="o">}</span><span class="se">\.</span><span class="o">[</span>0-9]<span class="o">{</span>1,3<span class="o">}</span><span class="se">\.</span><span class="o">[</span>0-9]<span class="o">{</span>1,3<span class="o">}</span><span class="se">\.</span><span class="o">[</span>0-9]<span class="o">{</span>1,3<span class="o">}</span><span class="nv">$ </span><span class="o">]]</span>; <span class="k">then
-        </span><span class="nv">OIFS</span><span class="o">=</span><span class="nv">$IFS</span>
-        <span class="nv">IFS</span><span class="o">=</span><span class="s1">'.'</span>
-        <span class="nv">ip</span><span class="o">=(</span><span class="nv">$ip</span><span class="o">)</span>
-        <span class="nv">IFS</span><span class="o">=</span><span class="nv">$OIFS</span>
-        <span class="o">[[</span> <span class="k">${</span><span class="nv">ip</span><span class="p">[0]</span><span class="k">}</span> -le 255 <span class="o">&amp;&amp;</span> <span class="k">${</span><span class="nv">ip</span><span class="p">[1]</span><span class="k">}</span> -le 255 <span class="se">\</span>
-            <span class="o">&amp;&amp;</span> <span class="k">${</span><span class="nv">ip</span><span class="p">[2]</span><span class="k">}</span> -le 255 <span class="o">&amp;&amp;</span> <span class="k">${</span><span class="nv">ip</span><span class="p">[3]</span><span class="k">}</span> -le 255 <span class="o">]]</span>
-        <span class="nv">stat</span><span class="o">=</span><span class="nv">$?</span>
-    <span class="k">fi
-    return</span> <span class="nv">$stat</span>
+    <span class="k">if</span> <span class="o">[[</span> <span class="nv">$ip</span> <span class="o">=</span>~ ^[0-9]<span class="o">{</span>1,3<span class="o">}</span><span class="se">\.</span><span class="o">[</span>0-9]<span class="o">{</span>1,3<span class="o">}</span><span class="se">\.</span><span class="o">[</span>0-9]<span class="o">{</span>1,3<span class="o">}</span><span class="se">\.</span><span class="o">[</span>0-9]<span class="o">{</span>1,3<span class="o">}</span><span class="nv">$ </span><span class="o">]]</span>
+    <span class="k">then
+        </span><span class="nv">OIFS</span><span class="o">=</span><span class="nv">$IFS</span>;
+        <span class="nv">IFS</span><span class="o">=</span><span class="s1">'.'</span>;
+        <span class="nv">ip</span><span class="o">=(</span><span class="nv">$ip</span><span class="o">)</span>;
+        <span class="nv">IFS</span><span class="o">=</span><span class="nv">$OIFS</span>;
+        <span class="o">[[</span> <span class="k">${</span><span class="nv">ip</span><span class="p">[0]</span><span class="k">}</span> -le 255 <span class="o">&amp;&amp;</span> <span class="k">${</span><span class="nv">ip</span><span class="p">[1]</span><span class="k">}</span> -le 255 <span class="o">&amp;&amp;</span> <span class="k">${</span><span class="nv">ip</span><span class="p">[2]</span><span class="k">}</span> -le 255 <span class="o">&amp;&amp;</span> <span class="k">${</span><span class="nv">ip</span><span class="p">[3]</span><span class="k">}</span> -le 255 <span class="o">]]</span>;
+        <span class="nv">stat</span><span class="o">=</span><span class="nv">$?</span>;
+    <span class="k">fi</span>;
+    <span class="k">return</span> <span class="nv">$stat</span>;
 <span class="o">}</span>
 
 <span class="k">function </span>getWanIp<span class="o">()</span> <span class="o">{</span>
-  <span class="nb">echo</span> <span class="s2">"</span><span class="k">$(</span>curl -s icanhazip.com<span class="k">)</span><span class="s2">"</span>
+  <span class="nb">echo</span> <span class="s2">"</span><span class="k">$(</span>curl -s icanhazip.com<span class="k">)</span><span class="s2">"</span>;
 <span class="o">}</span>
 
 <span class="c">###############################################################################################</span>
@@ -475,85 +502,93 @@ function </span>getExtIp <span class="o">{</span>
 <span class="o">{</span>
     <span class="nb">local </span>print_lat_lon
 
-    <span class="k">if</span> <span class="o">[</span> <span class="s2">"$#"</span> -eq 1 <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="o">[</span> <span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span> !<span class="o">=</span> <span class="s2">"-h"</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="k">$(</span>validip <span class="nv">$1</span><span class="k">)</span>; <span class="k">then
-        </span><span class="nv">print_lat_lon</span><span class="o">=</span><span class="nb">false
-    </span><span class="k">elif</span> <span class="o">[</span> <span class="s2">"$#"</span> -eq 2 <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="o">[</span> <span class="s2">"</span><span class="nv">$2</span><span class="s2">"</span> <span class="o">=</span> <span class="s2">"-l"</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="k">$(</span>validip <span class="nv">$1</span><span class="k">)</span>; <span class="k">then
-        </span><span class="nv">print_lat_lon</span><span class="o">=</span><span class="nb">true
-    </span><span class="k">else
-        </span><span class="nb">echo</span> -e <span class="s2">"getGeoLocFromIp (alias: glocip)</span><span class="se">\n</span><span class="s2">Returns: reverse geocoded city and country of IP address</span><span class="se">\n</span><span class="s2">Usage: getGeoLocFromIp &lt;valid ipv4 address&gt; [-h] [-l]</span><span class="se">\n</span><span class="s2"> -h: Print this usage stub</span><span class="se">\n</span><span class="s2"> -l: Additionally output latitude and longitude"</span> &gt;&amp;2
-        <span class="k">return </span>1
-    <span class="k">fi
-
-    </span><span class="nb">local </span><span class="nv">ip</span><span class="o">=</span><span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span>
-
-    <span class="nb">local </span><span class="nv">lat_lon</span><span class="o">=</span><span class="k">$(</span>getLatLonFromIp <span class="k">${</span><span class="nv">ip</span><span class="k">})</span>
-    <span class="nb">local </span><span class="nv">stat</span><span class="o">=</span><span class="nv">$?</span>
-    <span class="k">if</span> <span class="o">[</span> <span class="nv">$stat</span> -ne 0 <span class="o">]</span>; <span class="k">then return</span> <span class="nv">$stat</span>; <span class="k">fi
-
-    </span><span class="nb">local </span><span class="nv">city_country</span><span class="o">=</span><span class="k">$(</span>getCityCountryFromLatLon <span class="s2">"</span><span class="k">${</span><span class="nv">lat_lon</span><span class="k">}</span><span class="s2">"</span><span class="k">)</span>
-    <span class="nb">local </span><span class="nv">stat</span><span class="o">=</span><span class="nv">$?</span>
-    <span class="k">if</span> <span class="o">[</span> <span class="nv">$stat</span> -ne 0 <span class="o">]</span>; <span class="k">then return</span> <span class="nv">$stat</span>; <span class="k">fi
-
-    if</span> <span class="o">[</span> <span class="s2">"</span><span class="nv">$print_lat_lon</span><span class="s2">"</span> <span class="o">=</span> <span class="nb">true</span> <span class="o">]</span>; <span class="k">then
-        </span><span class="nb">echo</span> <span class="s2">"</span><span class="k">${</span><span class="nv">city_country</span><span class="k">}</span><span class="s2"> [</span><span class="k">${</span><span class="nv">lat_lon</span><span class="k">}</span><span class="s2">]"</span>
+    <span class="k">if</span> <span class="o">[</span> <span class="s2">"$#"</span> -eq 1 <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="o">[</span> <span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span> !<span class="o">=</span> <span class="s2">"-h"</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="k">$(</span>validip <span class="nv">$1</span><span class="k">)</span>
+    <span class="k">then
+        </span><span class="nv">print_lat_lon</span><span class="o">=</span><span class="nb">false</span>;
+    <span class="k">elif</span> <span class="o">[</span> <span class="s2">"$#"</span> -eq 2 <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="o">[</span> <span class="s2">"</span><span class="nv">$2</span><span class="s2">"</span> <span class="o">=</span> <span class="s2">"-l"</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="k">$(</span>validip <span class="nv">$1</span><span class="k">)</span>
+    <span class="k">then
+        </span><span class="nv">print_lat_lon</span><span class="o">=</span><span class="nb">true</span>;
     <span class="k">else
-        </span><span class="nb">echo</span> <span class="s2">"</span><span class="k">${</span><span class="nv">city_country</span><span class="k">}</span><span class="s2">"</span>
-    <span class="k">fi
+        </span><span class="nb">echo</span> -e <span class="s2">"getGeoLocFromIp (alias: glocip)</span><span class="se">\n</span><span class="s2">Returns: reverse geocoded city and country of IP address</span><span class="se">\n</span><span class="s2">Usage: getGeoLocFromIp &lt;valid ipv4 address&gt; [-h] [-l]</span><span class="se">\n</span><span class="s2"> -h: Print this usage stub</span><span class="se">\n</span><span class="s2"> -l: Additionally output latitude and longitude"</span> &gt;&amp;2;
+        <span class="k">return </span>1;
+    <span class="k">fi</span>;
 
-    return </span>0
+    <span class="nb">local </span><span class="nv">ip</span><span class="o">=</span><span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span>;
+
+    <span class="nb">local </span><span class="nv">lat_lon</span><span class="o">=</span><span class="k">$(</span>getLatLonFromIp <span class="k">${</span><span class="nv">ip</span><span class="k">})</span>;
+    <span class="nb">local </span><span class="nv">stat</span><span class="o">=</span><span class="nv">$?</span>;
+    <span class="k">if</span> <span class="o">[</span> <span class="nv">$stat</span> -ne 0 <span class="o">]</span>; <span class="k">then return</span> <span class="nv">$stat</span>; <span class="k">fi</span>;
+
+    <span class="nb">local </span><span class="nv">city_country</span><span class="o">=</span><span class="k">$(</span>getCityCountryFromLatLon <span class="s2">"</span><span class="k">${</span><span class="nv">lat_lon</span><span class="k">}</span><span class="s2">"</span><span class="k">)</span>;
+    <span class="nb">local </span><span class="nv">stat</span><span class="o">=</span><span class="nv">$?</span>;
+    <span class="k">if</span> <span class="o">[</span> <span class="nv">$stat</span> -ne 0 <span class="o">]</span>; <span class="k">then return</span> <span class="nv">$stat</span>; <span class="k">fi</span>;
+
+    <span class="k">if</span> <span class="o">[</span> <span class="s2">"</span><span class="nv">$print_lat_lon</span><span class="s2">"</span> <span class="o">=</span> <span class="nb">true</span> <span class="o">]</span>
+    <span class="k">then
+        </span><span class="nb">echo</span> <span class="s2">"</span><span class="k">${</span><span class="nv">city_country</span><span class="k">}</span><span class="s2"> [</span><span class="k">${</span><span class="nv">lat_lon</span><span class="k">}</span><span class="s2">]"</span>;
+    <span class="k">else
+        </span><span class="nb">echo</span> <span class="s2">"</span><span class="k">${</span><span class="nv">city_country</span><span class="k">}</span><span class="s2">"</span>;
+    <span class="k">fi</span>;
+
+    <span class="k">return </span>0;
 <span class="o">}</span>
 
 <span class="k">function </span>getLatLonFromIp<span class="o">()</span>
 <span class="o">{</span>
-    <span class="k">if</span> <span class="o">[</span> <span class="s2">"$#"</span> -ne 1 <span class="o">]</span> <span class="o">||</span> <span class="o">[</span> <span class="k">$(</span>validip <span class="nv">$1</span><span class="k">)</span> <span class="o">]</span>; <span class="k">then
-        </span><span class="nb">echo</span> -e <span class="s2">"Usage: getLatLonFromIp &lt;valid ipv4 address&gt;"</span> &gt;&amp;2
-        <span class="k">return </span>1
-    <span class="k">fi
+    <span class="k">if</span> <span class="o">[</span> <span class="s2">"$#"</span> -ne 1 <span class="o">]</span> <span class="o">||</span> <span class="o">[</span> <span class="k">$(</span>validip <span class="nv">$1</span><span class="k">)</span> <span class="o">]</span>
+    <span class="k">then
+        </span><span class="nb">echo</span> -e <span class="s2">"Usage: getLatLonFromIp &lt;valid ipv4 address&gt;"</span> &gt;&amp;2;
+        <span class="k">return </span>1;
+    <span class="k">fi</span>;
 
-    </span><span class="nb">local </span><span class="nv">ip</span><span class="o">=</span><span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span>
-    <span class="nb">local </span><span class="nv">lat_lon</span><span class="o">=</span><span class="k">$(</span>curl -s -m 1 <span class="s2">"freegeoip.net/json/</span><span class="k">${</span><span class="nv">ip</span><span class="k">}</span><span class="s2">"</span><span class="k">)</span>
+    <span class="nb">local </span><span class="nv">ip</span><span class="o">=</span><span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span>;
+    <span class="nb">local </span><span class="nv">lat_lon</span><span class="o">=</span><span class="k">$(</span>curl -s -m 1 <span class="s2">"freegeoip.net/json/</span><span class="k">${</span><span class="nv">ip</span><span class="k">}</span><span class="s2">"</span><span class="k">)</span>;
 
-    <span class="k">if</span> <span class="o">[</span> -z <span class="s2">"</span><span class="k">${</span><span class="nv">lat_lon</span><span class="k">}</span><span class="s2">"</span> <span class="o">]</span> <span class="o">||</span> <span class="o">[[</span> <span class="s2">"</span><span class="k">${</span><span class="nv">lat_lon</span><span class="k">}</span><span class="s2">"</span> <span class="o">=</span>~ Backend<span class="se">\ </span>not<span class="se">\ </span>available <span class="o">]]</span> <span class="o">||</span> <span class="o">[[</span> ! <span class="s2">"</span><span class="k">${</span><span class="nv">lat_lon</span><span class="k">}</span><span class="s2">"</span> <span class="o">=</span>~ .<span class="k">*</span>latitude.<span class="k">*</span> <span class="o">]]</span>; <span class="k">then
-        </span><span class="nb">echo</span> -e <span class="s2">"Failure to access geocoding API; either:</span><span class="se">\n</span><span class="s2"> - Network connectivity is compromised</span><span class="se">\n</span><span class="s2"> - API calls to freegeoip.net are being blocked</span><span class="se">\n</span><span class="s2"> - freegeoip.net have changed their API</span><span class="se">\n</span><span class="s2">Investigate."</span> &gt;&amp;2
-        <span class="k">return </span>1
+    <span class="k">if</span> <span class="o">[</span> -z <span class="s2">"</span><span class="k">${</span><span class="nv">lat_lon</span><span class="k">}</span><span class="s2">"</span> <span class="o">]</span> <span class="o">||</span> <span class="o">[[</span> <span class="s2">"</span><span class="k">${</span><span class="nv">lat_lon</span><span class="k">}</span><span class="s2">"</span> <span class="o">=</span>~ Backend<span class="se">\ </span>not<span class="se">\ </span>available <span class="o">]]</span> <span class="o">||</span> <span class="o">[[</span> ! <span class="s2">"</span><span class="k">${</span><span class="nv">lat_lon</span><span class="k">}</span><span class="s2">"</span> <span class="o">=</span>~ .<span class="k">*</span>latitude.<span class="k">*</span> <span class="o">]]</span>
+    <span class="k">then
+        </span><span class="nb">echo</span> -e <span class="s2">"Failure to access geocoding API; either:</span><span class="se">\n</span><span class="s2"> - Network connectivity is compromised</span><span class="se">\n</span><span class="s2"> - API calls to freegeoip.net are being blocked</span><span class="se">\n</span><span class="s2"> - freegeoip.net have changed their API</span><span class="se">\n</span><span class="s2">Investigate."</span> &gt;&amp;2;
+        <span class="k">return </span>1;
     <span class="k">else
-        </span><span class="nv">lat_lon</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span><span class="nb">echo</span> <span class="k">${</span><span class="nv">lat_lon</span><span class="k">}</span> | jq -r <span class="s1">'.latitude, .longitude'</span><span class="k">)</span><span class="s2">"</span>
-        <span class="nv">lat_lon</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span><span class="nb">echo</span> <span class="k">${</span><span class="nv">lat_lon</span><span class="k">}</span> | tr <span class="s1">' '</span> <span class="s1">','</span><span class="k">)</span><span class="s2">"</span>
-    <span class="k">fi
+        </span><span class="nv">lat_lon</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span><span class="nb">echo</span> <span class="k">${</span><span class="nv">lat_lon</span><span class="k">}</span> | jq -r <span class="s1">'.latitude, .longitude'</span><span class="k">)</span><span class="s2">"</span>;
+        <span class="nv">lat_lon</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span><span class="nb">echo</span> <span class="k">${</span><span class="nv">lat_lon</span><span class="k">}</span> | tr <span class="s1">' '</span> <span class="s1">','</span><span class="k">)</span><span class="s2">"</span>;
+    <span class="k">fi</span>;
 
-    </span><span class="nb">echo</span> <span class="s2">"</span><span class="k">${</span><span class="nv">lat_lon</span><span class="k">}</span><span class="s2">"</span>
+    <span class="nb">echo</span> <span class="s2">"</span><span class="k">${</span><span class="nv">lat_lon</span><span class="k">}</span><span class="s2">"</span>;
 
-    <span class="k">return </span>0
+    <span class="k">return </span>0;
 <span class="o">}</span>
 
 <span class="k">function </span>getCityCountryFromLatLon<span class="o">()</span>
 <span class="o">{</span>
-    <span class="nb">local </span><span class="nv">latlon</span><span class="o">=</span><span class="s2">""</span>
+    <span class="nb">local </span><span class="nv">latlon</span><span class="o">=</span><span class="s2">""</span>;
 
-    <span class="k">if</span> <span class="o">[</span> <span class="s2">"$#"</span> -eq 1 <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="o">[</span> -n <span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span> <span class="o">]</span>; <span class="k">then
-        </span><span class="nv">latlon</span><span class="o">=</span><span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span>
-    <span class="k">elif</span> <span class="o">[</span> <span class="s2">"$#"</span> -eq 2 <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="o">[</span> -n <span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="o">[</span> -n <span class="s2">"</span><span class="nv">$2</span><span class="s2">"</span> <span class="o">]</span>; <span class="k">then
-        </span><span class="nb">local </span><span class="nv">lat</span><span class="o">=</span><span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span>
-        <span class="nb">local </span><span class="nv">lon</span><span class="o">=</span><span class="s2">"</span><span class="nv">$2</span><span class="s2">"</span>
-        <span class="nv">latlon</span><span class="o">=</span><span class="s2">"</span><span class="k">${</span><span class="nv">lat</span><span class="k">}</span><span class="s2">,</span><span class="k">${</span><span class="nv">lon</span><span class="k">}</span><span class="s2">"</span>
+    <span class="k">if</span> <span class="o">[</span> <span class="s2">"$#"</span> -eq 1 <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="o">[</span> -n <span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span> <span class="o">]</span>
+    <span class="k">then
+        </span><span class="nv">latlon</span><span class="o">=</span><span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span>;
+    <span class="k">elif</span> <span class="o">[</span> <span class="s2">"$#"</span> -eq 2 <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="o">[</span> -n <span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="o">[</span> -n <span class="s2">"</span><span class="nv">$2</span><span class="s2">"</span> <span class="o">]</span>
+    <span class="k">then
+        </span><span class="nb">local </span><span class="nv">lat</span><span class="o">=</span><span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span>;
+        <span class="nb">local </span><span class="nv">lon</span><span class="o">=</span><span class="s2">"</span><span class="nv">$2</span><span class="s2">"</span>;
+        <span class="nv">latlon</span><span class="o">=</span><span class="s2">"</span><span class="k">${</span><span class="nv">lat</span><span class="k">}</span><span class="s2">,</span><span class="k">${</span><span class="nv">lon</span><span class="k">}</span><span class="s2">"</span>;
     <span class="k">else
-        </span><span class="nb">echo</span> -e <span class="s2">"Usage: getCityCountryFromLatLon {&lt;latitude&gt; &lt;longitude&gt;|&lt;latitude,longitude&gt;}"</span> &gt;&amp;2
-        <span class="k">return </span>1
-    <span class="k">fi
+        </span><span class="nb">echo</span> -e <span class="s2">"Usage: getCityCountryFromLatLon {&lt;latitude&gt; &lt;longitude&gt;|&lt;latitude,longitude&gt;}"</span> &gt;&amp;2;
+        <span class="k">return </span>1;
+    <span class="k">fi</span>;
 
-    </span>mapfile -t city_country &lt; &lt;<span class="o">(</span>curl -G -k --data <span class="s2">"latlng=</span><span class="nv">$latlon</span><span class="s2">&amp;sensor=false"</span> http://maps.googleapis.com/maps/api/geocode/xml 2&gt;/dev/null | xmlstarlet sel -t -v <span class="s1">'/GeocodeResponse/result[1]/address_component[type="political"][type="country"]/long_name'</span> -n -t -v <span class="s1">'/GeocodeResponse/result[1]/address_component[type="political"][type="locality"]/long_name'</span><span class="o">)</span>
+    mapfile -t city_country &lt; &lt;<span class="o">(</span>curl -G -k --data <span class="s2">"latlng=</span><span class="nv">$latlon</span><span class="s2">&amp;sensor=false"</span> http://maps.googleapis.com/maps/api/geocode/xml 2&gt;/dev/null | xmlstarlet sel -t -v <span class="s1">'/GeocodeResponse/result[1]/address_component[type="political"][type="country"]/long_name'</span> -n -t -v <span class="s1">'/GeocodeResponse/result[1]/address_component[type="political"][type="locality"]/long_name'</span><span class="o">)</span>;
 
-    <span class="k">if</span> <span class="o">[</span> <span class="s2">"</span><span class="k">${#</span><span class="nv">city_country</span><span class="p">[@]</span><span class="k">}</span><span class="s2">"</span> -lt 2 <span class="o">]</span>; <span class="k">then
-        </span><span class="nb">echo</span> -e <span class="s2">"Failed to parse geocoding API, either:</span><span class="se">\n</span><span class="s2"> - Network connectivity is compromised</span><span class="se">\n</span><span class="s2"> - API calls to maps.googleapis.com are being blocked</span><span class="se">\n</span><span class="s2"> - maps.googleapis.com has changed its API</span><span class="se">\n</span><span class="s2">Investigate."</span> &gt;&amp;2
-        <span class="k">return </span>1
-    <span class="k">fi
+    <span class="k">if</span> <span class="o">[</span> <span class="s2">"</span><span class="k">${#</span><span class="nv">city_country</span><span class="p">[@]</span><span class="k">}</span><span class="s2">"</span> -lt 2 <span class="o">]</span>
+    <span class="k">then
+        </span><span class="nb">echo</span> -e <span class="s2">"Failed to parse geocoding API, either:</span><span class="se">\n</span><span class="s2"> - Network connectivity is compromised</span><span class="se">\n</span><span class="s2"> - API calls to maps.googleapis.com are being blocked</span><span class="se">\n</span><span class="s2"> - maps.googleapis.com has changed its API</span><span class="se">\n</span><span class="s2">Investigate."</span> &gt;&amp;2;
+        <span class="k">return </span>1;
+    <span class="k">fi</span>;
 
-    </span><span class="nb">local </span><span class="nv">country</span><span class="o">=</span><span class="s2">"</span><span class="k">${</span><span class="nv">city_country</span><span class="p">[0]</span><span class="k">}</span><span class="s2">"</span>
-    <span class="nb">local </span><span class="nv">city</span><span class="o">=</span><span class="s2">"</span><span class="k">${</span><span class="nv">city_country</span><span class="p">[1]</span><span class="k">}</span><span class="s2">"</span>
+    <span class="nb">local </span><span class="nv">country</span><span class="o">=</span><span class="s2">"</span><span class="k">${</span><span class="nv">city_country</span><span class="p">[0]</span><span class="k">}</span><span class="s2">"</span>;
+    <span class="nb">local </span><span class="nv">city</span><span class="o">=</span><span class="s2">"</span><span class="k">${</span><span class="nv">city_country</span><span class="p">[1]</span><span class="k">}</span><span class="s2">"</span>;
 
-    <span class="nb">echo</span> <span class="s2">"</span><span class="k">${</span><span class="nv">city</span><span class="k">}</span><span class="s2">, </span><span class="k">${</span><span class="nv">country</span><span class="k">}</span><span class="s2">"</span>
+    <span class="nb">echo</span> <span class="s2">"</span><span class="k">${</span><span class="nv">city</span><span class="k">}</span><span class="s2">, </span><span class="k">${</span><span class="nv">country</span><span class="k">}</span><span class="s2">"</span>;
 
-    <span class="k">return </span>0
+    <span class="k">return </span>0;
 <span class="o">}</span>
 
 <span class="c">###############################################################################################</span>
@@ -562,12 +597,13 @@ function </span>getExtIp <span class="o">{</span>
 
 <span class="nb">alias </span><span class="nv">gloc</span><span class="o">=</span><span class="s1">'getGeoLocFromIp $(getExtIp)'</span>
 <span class="nb">alias </span><span class="nv">glocip</span><span class="o">=</span><span class="s1">'getGeoLocFromIp'</span>
-<span class="nb">alias </span><span class="nv">latlonip</span><span class="o">=</span><span class="s1">'getLatLonFromIp'</span></code></pre></div> <p>These should all be sourced in your <code>$HOME/.bashrc</code> or <code>$HOME/.bash_profile</code> initialisation scripts, for example:</p> <p><code>$HOME/.bashrc</code></p> <div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="k">if</span> <span class="o">[</span> -d ~/.bash.d <span class="o">]</span>; <span class="k">then</span>
-    . ~/.bash.d/.bash_aliases
-    . ~/.bash.d/.bash_vpn
-    . ~/.bash.d/.bash_parse
-    . ~/.bash.d/.bash_geo
-<span class="k">fi</span></code></pre></div> <p>Then, running <code>crontab -e</code> as a regular user, the cron function in the <code>.bash_vpn</code> source file can be called (in this example, every 5 minutes) by inserting the following:</p> <div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">SHELL</span><span class="o">=</span>/bin/bash
+<span class="nb">alias </span><span class="nv">latlonip</span><span class="o">=</span><span class="s1">'getLatLonFromIp'</span></code></pre></div> <p>These should all be sourced in your <code>$HOME/.bashrc</code> or <code>$HOME/.bash_profile</code> initialisation scripts, for example:</p> <p><code>$HOME/.bashrc</code></p> <div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="k">if</span> <span class="o">[</span> -d ~/.bash.d <span class="o">]</span>
+<span class="k">then</span>
+    . ~/.bash.d/.bash_aliases;
+    . ~/.bash.d/.bash_vpn;
+    . ~/.bash.d/.bash_parse;
+    . ~/.bash.d/.bash_geo;
+<span class="k">fi</span>;</code></pre></div> <p>Then, running <code>crontab -e</code> as a regular user, the cron function in the <code>.bash_vpn</code> source file can be called (in this example, every 5 minutes) by inserting the following:</p> <div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">SHELL</span><span class="o">=</span>/bin/bash
 <span class="c">###############################################################</span>
 <span class="c"># m     h       dom     mon     dow     command</span>
 <span class="c">#==============================================================</span>
