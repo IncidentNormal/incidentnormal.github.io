@@ -6,19 +6,19 @@
 </description>
     <link>https://incidentnormal.github.io/</link>
     <atom:link href="https://incidentnormal.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 23 Sep 2016 07:24:23 +0100</pubDate>
-    <lastBuildDate>Fri, 23 Sep 2016 07:24:23 +0100</lastBuildDate>
+    <pubDate>Fri, 23 Sep 2016 07:26:42 +0100</pubDate>
+    <lastBuildDate>Fri, 23 Sep 2016 07:26:42 +0100</lastBuildDate>
     <generator>Jekyll v2.5.3</generator>
     
       <item>
-        <title>OpenVPN Controller for Headless Server, implemented in bash</title>
+        <title>Headless Openvpn Controller Bash</title>
         <description>&lt;p&gt;Due to numerous, perceived breaches of Internet privacy (both of individuals and organisations) by heavily resourced actors (Nation states, ISPs etc), it seemed prudent to create some kind of API or controller for OpenVPN, that enabled the automation of otherwise fairly logistically complicated (and fraught) procedures - such as switching VPN server on the fly, without broadcasting your real IP address at any point during the re-negotiation of the VPN connection.&lt;/p&gt;
 
 &lt;p&gt;The OpenVPN controller script attached below, is implemented in bash - and includes a facility to stop particular services (with checks) for the duration of the connection changeover. In this case, it will stop the transmission-daemon service, before restarting it upon determining a successful connection has been established to the new VPN server. The controller also includes a function designed to be called by cron, which checks the IP address periodically - and if it is found that the connection has dropped / or that the IP address has reverted to the last known real IP address, it will automatically rotate the VPN configuration and connect to a new VPN server.&lt;/p&gt;
 
 &lt;p&gt;Fairly verbose logging is standard in this script, due to the critical nature of the order of operations - it pays to have detailed logs to check during setup.&lt;/p&gt;
 
-&lt;h2&gt;`$HOME/.bash.d/.bash_vpn`&lt;/h2&gt;
+&lt;p&gt;&lt;big&gt;&lt;code&gt;$HOME/.bash.d/.bash_vpn&lt;/code&gt;&lt;/big&gt;&lt;/p&gt;
 
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;c&quot;&gt;#!/bin/bash&lt;/span&gt;
 
@@ -734,8 +734,8 @@ lrwxrwxrwx 1 vpnuser vpnuser   25 Sep 13 19:44 vpnx.conf -&amp;gt; /etc/openvpn/
 &lt;li&gt;&lt;strong&gt;ca certificate&lt;/strong&gt; (inside &amp;lt;ca&amp;gt; &amp;lt;/ca&amp;gt; tags)&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;tls key&lt;/strong&gt; (inside &amp;lt;tls-auth&amp;gt; &amp;lt;/tls-auth&amp;gt; tags)&lt;/li&gt;
 &lt;/default-ul&gt;
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p&gt;Thus each ovpn file is self-contained and contains all necessary information to create the openvpn connection.&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
+Thus each ovpn file is self-contained and contains all necessary information to create the openvpn connection.&lt;/p&gt;
 
 &lt;p&gt;In the Linux shell, you can run:&lt;/p&gt;
 
@@ -757,26 +757,10 @@ Mount Hope, United States&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Any questions, just drop a comment below.&lt;/p&gt;
 </description>
-        <pubDate>Fri, 23 Sep 2016 03:52:53 +0100</pubDate>
+        <pubDate>Fri, 23 Sep 2016 00:00:00 +0100</pubDate>
         <link>https://incidentnormal.github.io/2016/headless-openvpn-controller-bash/</link>
         <guid isPermaLink="true">https://incidentnormal.github.io/2016/headless-openvpn-controller-bash/</guid>
         
-        
-        <category>bash</category>
-        
-        <category>server</category>
-        
-        <category>linux</category>
-        
-        <category>openvpn</category>
-        
-        <category>scripts</category>
-        
-        <category>geoip</category>
-        
-        <category>code</category>
-        
-        <category>transmission</category>
         
       </item>
     
