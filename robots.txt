@@ -1,2 +1,8 @@
+User-agent: Mediapartners-Google
+Disallow: 
+
 User-agent: *
-Disallow: *
+Disallow:
+Allow: /
+
+Sitemap: https://incidentnormal.github.io/sitemap.xml
