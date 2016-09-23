@@ -1245,7 +1245,7 @@ body.navigation-is-open .menu-burger {
 }
 .site-footer .container {
   padding-top: 2em;
-  border-top: 1px solid #e6e6e6;
+  border: 1px solid #e6e6e6;
 }
 .site-footer p {
   margin-bottom: 0;
