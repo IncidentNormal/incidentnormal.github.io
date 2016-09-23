@@ -6,9 +6,9 @@
   <span class="n">gem</span> <span class="s1">'jekyll'</span><span class="p">,</span> <span class="s1">'~&gt; 2.5.3'</span>
   <span class="n">gem</span> <span class="s1">'travis'</span><span class="p">,</span> <span class="s1">'~&gt; 1.8'</span>
   <span class="n">gem</span> <span class="s1">'rouge'</span><span class="p">,</span> <span class="s1">'~&gt; 2.0.6'</span>
-<span class="k">end</span></code></pre></div> <p>Back to the Linux shell, I ran:</p> <div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="gp">dev@srv:~$ </span><span class="k">if</span> <span class="o">[[</span> <span class="k">$(</span>gem query -i -d -l rouge<span class="k">)</span> <span class="o">==</span> <span class="s2">"false"</span> <span class="o">]]</span>; <span class="k">then </span>sudo gem install rouge; <span class="k">fi
-
-</span><span class="gp">dev@srv:~$ </span>bundle install</code></pre></div> <p>Before editing the <code>_config.yml</code> file to read as follows:</p> <div class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="na">source</span><span class="pi">:</span> <span class="s">.</span>
+<span class="k">end</span></code></pre></div> <p>Back to the Linux shell, I ran:</p> <div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="gp">dev@srv:~$ </span><span class="k">if</span> <span class="o">[[</span> <span class="s2">"</span><span class="k">$(</span>gem query -i -d -l rouge<span class="k">)</span><span class="s2">"</span> <span class="o">==</span> <span class="s2">"false"</span> <span class="o">]]</span>; <span class="k">then </span>sudo gem install rouge; <span class="k">fi</span>
+<span class="err">$</span>
+<span class="gp">dev@srv:~$ </span>bundle install</code></pre></div> <p>Before editing the <code>_config.yml</code> file to read as follows:</p> <div class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="na">source</span><span class="pi">:</span> <span class="s">.</span>
 <span class="na">destination</span><span class="pi">:</span> <span class="s">_site</span>
 <span class="na">sass</span><span class="pi">:</span>
   <span class="na">sass_dir</span><span class="pi">:</span> <span class="s">_sass</span>
