@@ -856,7 +856,7 @@ body.home-intro .intro {
 .navbar .primary-nav a {
   font-size: 1.4rem;
   text-decoration: none;
-  color: rgba(255, 255, 255, 0.16);
+  color: rgba(255, 255, 255, 0.8);
   font-weight: 400;
   display: inline-block;
 }
